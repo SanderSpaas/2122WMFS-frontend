@@ -23,6 +23,8 @@ export default {
       <h1>Hello App! ik sta in app.vue</h1>
       <!-- route outlet -->
       <!-- component matched by the route will render here -->
+      <router-link to="/gamelist">gamelist</router-link>
+      <router-link to="/chat">chat</router-link>
       <router-view />
     </div>
   </main>

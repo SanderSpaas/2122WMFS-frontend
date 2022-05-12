@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     logout() {
-      console.log("logging you out bye bye sir");
+      console.log(this.$store._actions);
       store.dispatch("auth/logout");
     },
   },

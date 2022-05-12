@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import auth from "./auth";
+import games from "./games";
 // don't just export an object!
 // export a STORE
 export default createStore({
@@ -10,5 +11,6 @@ export default createStore({
   actions: {},
   modules: {
     auth,
+    games,
   },
 });

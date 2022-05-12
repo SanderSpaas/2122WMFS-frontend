@@ -6,6 +6,7 @@ import Stats from "../components/templates/StatsView.vue";
 import Game from "../components/templates/GameView.vue";
 import Chat from "../components/templates/ChatPage.vue";
 import History from "../components/templates/HistoryView.vue";
+import Gamelist from "../components/templates/GamesView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -40,6 +41,11 @@ const router = createRouter({
       path: "/history",
       name: "history",
       component: History,
+    },
+    {
+      path: "/gamelist",
+      name: "gamelist",
+      component: Gamelist,
     },
     //alle urls die em niet kent naar de homepage sturen
     // {

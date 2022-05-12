@@ -67,6 +67,16 @@ export default {
           }
         }
       }
+      //userdata gaan ophalen
+      try {
+        const { data } = await axios.get("http://localhost:8080/user");
+        console.log(data);
+        commit("login", true);
+        commit("authenticate", true);
+        commit("setUser", "sander.spaas@odisee.be");
+      } catch (e) {
+        console.log(e);
+      }
     },
     async logout({ commit }) {
       commit("setUser", {});
@@ -101,7 +111,7 @@ export default {
     },
     async getStuff({ commit }) {
       try {
-        const { data } = await axios.get("http://localhost:8080/api/secret");
+        const { data } = await axios.get("http://localhost:8080/user");
         console.log(data);
         commit("login", true);
         commit("authenticate", true);
