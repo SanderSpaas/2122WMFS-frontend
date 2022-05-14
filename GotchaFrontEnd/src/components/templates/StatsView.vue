@@ -1,11 +1,11 @@
 <style></style>
 
 <template>
-  <main>
+  <div>
     <MoleculeHeader />
     <h1>Stats pagina</h1>
     <MoleculeNavigation />
-  </main>
+  </div>
 </template>
 
 <script>

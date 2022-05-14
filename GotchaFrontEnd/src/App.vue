@@ -1,5 +1,7 @@
 <script>
 import store from "./store";
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -13,14 +15,25 @@ export default {
       store.dispatch("auth/logout");
     },
   },
+  computed: {
+    ...mapGetters({
+      loading: "auth/isLoading",
+      Loading: "games/isLoading",
+    }),
+  },
 };
 </script>
 
 <template>
-  <main>
-    <!-- <LoginForm /> -->
+  <main id="main-content">
+    <a href="#main-content" class="skiplink"> Skip to main content </a>
+    <div class="lds-ellipsis" v-if="loading || Loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
     <div>
-      <h1>Hello App! ik sta in app.vue</h1>
       <!-- route outlet -->
       <!-- component matched by the route will render here -->
       <router-link to="/gamelist">gamelist</router-link>
@@ -30,7 +43,17 @@ export default {
   </main>
 </template>
 
-<style>
+<style lang="scss">
 @import "./assets/base.css";
 @import "./assets/common.css";
+a.skiplink {
+  position: absolute;
+  // background-color: palevioletred;
+  top: -100%;
+  left: 0;
+
+  &:focus {
+    top: 0;
+  }
+}
 </style>

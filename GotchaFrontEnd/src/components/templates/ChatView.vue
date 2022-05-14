@@ -3,17 +3,18 @@
 <template>
   <div>
     <MoleculeHeader />
-    <h1>Game pagina</h1>
     <div v-if="data">
       <p>{{ data }}</p>
       <p>{{ data.user.name }} aka {{ data.alias }}</p>
-      <!-- <img src="../../assets/img/avatar.png" alt="default person avatar" /> -->
-      <p>TARGET ID {{ data.target_id }}</p>
-      //moet nog target name worden
-      <p>{{ data.game.murder_method }}</p>
-
-      <AtomButton>I Died</AtomButton>
     </div>
+    <h1>Chat pagina</h1>
+    <div v-if="user">
+      <p>Logged in: {{ loggedIn + "" }}</p>
+      <p>Authenticated: {{ authenticated + "" }}</p>
+      <p>User: {{ user.name + "" }}</p>
+      <p>role: {{ user.role + "" }}</p>
+    </div>
+
     <MoleculeNavigation />
   </div>
 </template>
@@ -21,24 +22,22 @@
 <script>
 import MoleculeNavigation from "../molecules/MoleculeNavigation.vue";
 import MoleculeHeader from "../molecules/MoleculeHeader.vue";
-import AtomButton from "../atoms/AtomButton.vue";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
+
 export default {
-  components: { MoleculeNavigation, MoleculeHeader, AtomButton },
+  components: { MoleculeNavigation, MoleculeHeader },
   computed: {
     ...mapGetters({
       loggedIn: "auth/isLoggedin",
       authenticated: "auth/isAuthenticated",
       user: "auth/user",
-      role: "auth/role",
       data: "games/getUserFromGame",
     }),
   },
   methods: {
     ...mapActions({
       UserFromGame: "games/UserFromGame",
-      start: "games/start",
     }),
   },
   created() {
@@ -46,7 +45,6 @@ export default {
   },
   mounted() {
     this.UserFromGame();
-    this.start();
   },
 };
 </script>

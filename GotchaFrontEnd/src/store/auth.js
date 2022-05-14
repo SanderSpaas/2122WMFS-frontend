@@ -8,6 +8,7 @@ export default {
       authenticated: false,
       user: null,
       error: null,
+      loading: false,
     };
   },
   getters: {
@@ -22,6 +23,9 @@ export default {
     },
     error(state) {
       return state.error;
+    },
+    isLoading(state) {
+      return state.loading;
     },
   },
   mutations: {
@@ -40,82 +44,86 @@ export default {
     setError(state, error) {
       state.error = error;
     },
+    loading(state, loading) {
+      state.loading = loading;
+    },
   },
   actions: {
-    async login({ commit }, { email, password }) {
+    async login({ commit, dispatch }, { email, password }) {
       if (this.isAuthenticated) {
         console.log("you are already logged in");
       } else {
         console.log("Trying to log you in: " + email + " " + password);
+        commit("loading", true);
         try {
           await axios.get("http://localhost:8080/sanctum/csrf-cookie");
           const { data } = await axios.post("http://localhost:8080/api/login", {
             email: email,
             password: password,
           });
+          commit("loading", false);
           console.log(data);
           commit("login", true);
           commit("authenticate", true);
-          commit("setUser", email);
+
           router.push("/home");
         } catch (e) {
           console.log(e);
           if (e.response.status === 401) {
             commit("setError", "Your password or email is incorrect");
           } else {
-            commit("setError", e.response.status);
+            commit("setError", e);
           }
         }
-      }
-      //userdata gaan ophalen
-      try {
-        const { data } = await axios.get("http://localhost:8080/user");
-        console.log(data);
-        commit("login", true);
-        commit("authenticate", true);
-        commit("setUser", "sander.spaas@odisee.be");
-      } catch (e) {
-        console.log(e);
+        dispatch("getUser");
       }
     },
     async logout({ commit }) {
-      commit("setUser", {});
-      commit("authenticate", false);
-      router.push("/login");
+      console.log("trying to log you out");
       if (document.cookie.indexOf("XSRF-TOKEN") === -1) {
+        // reject, geen cookie aanwezig
         return;
+      } else {
+        commit("loading", true);
+        // I don't care about the response
+        // but it resets the cookie... so... yeah;
+        return axios
+          .post("http://localhost:8080/sanctum/api/logout")
+          .catch()
+          .finally(() => {
+            // clear cookie to prevent future auto login attempts;
+            document.cookie =
+              "XSRFTOKEN=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC; Secure;";
+            commit("loading", false);
+            commit("setUser", {});
+            commit("authenticate", false);
+            router.push("/login");
+          });
       }
-      // I don't care about the response
-      // but it resets the cookie... so... yeah;
-      return axios
-        .post("http://localhost:8080/api/logout")
-        .catch()
-        .finally(() => {
-          // clear cookie to prevent future auto login attempts;
-          document.cookie =
-            "XSRFTOKEN=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC; Secure;";
-        });
     },
-    async tryAutoLogin({ commit }) {
+    async tryAutoLogin({ commit, dispatch }) {
       console.log("trying to log you in sir");
       if (document.cookie.indexOf("XSRF-TOKEN") === -1) {
         //geen cookie aanwezig
         console.log("looks like you don't have a cookie bad boy");
       } else {
         //cookie aanwezig dus we kunnen auto loginnen
-        commit("setUser", this.user);
         commit("authenticate", true);
         commit("login", true);
         console.log("ooh yeah thats the stuff im logged in bb");
+        dispatch("getUser");
       }
     },
-    async getStuff({ commit }) {
+    async getUser({ commit }) {
+      commit("loading", true);
+      console.log("trying to get user info");
       try {
-        const { data } = await axios.get("http://localhost:8080/user");
+        const { data } = await axios.get("http://localhost:8080/api/user");
+        commit("loading", false);
         console.log(data);
         commit("login", true);
         commit("authenticate", true);
-        commit("setUser", "sander.spaas@odisee.be");
+        commit("setUser", data);
       } catch (e) {
         console.log(e);
       }

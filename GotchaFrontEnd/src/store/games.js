@@ -4,25 +4,68 @@ export default {
   state() {
     return {
       games: null,
+      loading: false,
+      user: null,
     };
   },
   getters: {
-    getData(state) {
+    getGames(state) {
       return state.games;
+    },
+    isLoading(state) {
+      return state.loading;
+    },
+    getUserFromGame(state) {
+      return state.user;
     },
   },
   mutations: {
-    data(state, data) {
+    games(state, data) {
       state.games = data;
+    },
+    userFromGame(state, data) {
+      state.user = data;
+    },
+    loading(state, loading) {
+      state.loading = loading;
     },
   },
   actions: {
-    async getGames({ commit }) {
+    async Games({ commit }) {
       console.log("trying to get user info");
+      commit("loading", true);
       try {
         const { data } = await axios.get("http://localhost:8080/api/games");
+        commit("loading", false);
         console.log(data);
-        commit("data", data);
+        commit("games", data.data);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async UserFromGame({ commit }) {
+      console.log("trying to get user info");
+      commit("loading", true);
+      try {
+        const { data } = await axios.get(
+          "http://localhost:8080/api/games/1/22"
+        );
+        commit("loading", false);
+        console.log(data);
+        commit("userFromGame", data.data[0]);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async start({ commit }) {
+      console.log("trying to hand out some hits");
+      commit("loading", true);
+      try {
+        const { data } = await axios.get(
+          "http://localhost:8080/api/games/1/start"
+        );
+        commit("loading", false);
+        console.log(data);
       } catch (e) {
         console.log(e);
       }
