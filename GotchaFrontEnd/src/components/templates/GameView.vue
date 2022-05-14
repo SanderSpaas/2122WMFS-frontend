@@ -12,7 +12,7 @@
       //moet nog target name worden
       <p>{{ data.game.murder_method }}</p>
 
-      <AtomButton>I Died</AtomButton>
+      <AtomButton @click="killPlayer">I Died</AtomButton>
     </div>
     <MoleculeNavigation />
   </div>
@@ -39,6 +39,7 @@ export default {
     ...mapActions({
       UserFromGame: "games/UserFromGame",
       start: "games/start",
+      killPlayer: "games/killPlayer",
     }),
   },
   created() {

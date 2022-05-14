@@ -70,5 +70,16 @@ export default {
         console.log(e);
       }
     },
+    async killPlayer({ commit }) {
+      console.log("Killing player");
+      commit("loading", true);
+      try {
+        const { data } = await axios.post("http://localhost:8080/api/player/22");
+        commit("loading", false);
+        console.log(data);
+      } catch (e) {
+        console.log(e);
+      }
+    },
   },
 };
