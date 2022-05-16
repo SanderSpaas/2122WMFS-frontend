@@ -1,14 +1,24 @@
 <template>
   <div>
+    <MoleculeHeader />
     <h1>ik ben de gameslijstheader :)</h1>
     <div class="list" v-for="game in data" :key="game.id">
       <div class="gameBlok">
-        <p>{{ game.name }}</p>
-        <p>0👤</p>
+        <p class="name">{{ game.name }}</p>
+        <p>{{ game.players.length }}👤</p>
 
-        <router-link to="/game">Join</router-link>
-        <!-- todo add tooltip -->
-        <!-- <div class="tooltip"> -->
+        <router-link
+          v-if="joinOrContinue(game.players, user)"
+          :to="{ name: 'game', params: { gameId: game.id } }"
+          >Continue playing</router-link
+        >
+
+        <router-link
+          v-else
+          :to="{ name: 'player', params: { gameId: game.id } }"
+          >Join</router-link
+        >
+
         <p v-if="game.status === 'Active'">
           <Icon
             icon="ant-design:info-circle-twotone"
@@ -25,30 +35,34 @@
             :inline="true"
           />
         </p>
-        <!-- <span class="tooltiptext">{{ game.status }}</span> -->
-        <!-- </div> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import MoleculeHeader from "../molecules/MoleculeHeader.vue";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
 import { Icon } from "@iconify/vue";
 export default {
   components: {
     Icon,
+    MoleculeHeader,
   },
   computed: {
     ...mapGetters({
       data: "games/getGames",
+      user: "auth/user",
     }),
   },
   methods: {
     ...mapActions({
       Games: "games/Games",
     }),
+    joinOrContinue(players, user) {
+      return !!players?.find((p) => p.id === user.id);
+    },
   },
   created() {
     console.log(this.$store._actions);
@@ -61,7 +75,14 @@ export default {
 
 <style scoped>
 @import "../../assets/common.css";
+.name {
+  width: 30vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .list {
+  left: 12.5vw;
+  width: 75vw;
   /* display: flex;
   flex-direction: column;
   justify-content: space-evenly; */

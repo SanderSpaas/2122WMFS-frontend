@@ -41,20 +41,22 @@ export default {
         commit("games", data.data);
       } catch (e) {
         console.log(e);
+        commit("loading", false);
       }
     },
-    async UserFromGame({ commit }) {
+    async UserFromGame({ commit }, gameId) {
       console.log("trying to get user info");
       commit("loading", true);
       try {
         const { data } = await axios.get(
-          "http://localhost:8080/api/games/1/22"
+          "http://localhost:8080/api/games/" + gameId
         );
         commit("loading", false);
         console.log(data);
         commit("userFromGame", data.data[0]);
       } catch (e) {
         console.log(e);
+        commit("loading", false);
       }
     },
     async start({ commit }) {
@@ -68,17 +70,37 @@ export default {
         console.log(data);
       } catch (e) {
         console.log(e);
+        commit("loading", false);
       }
     },
-    async killPlayer({ commit }) {
+    async killPlayer({ commit, dispatch }) {
       console.log("Killing player");
       commit("loading", true);
       try {
-        const { data } = await axios.post("http://localhost:8080/api/player/22");
+        const { data } = await axios.post("http://localhost:8080/api/player");
+        commit("loading", false);
+        console.log(data);
+        dispatch("UserFromGame");
+      } catch (e) {
+        console.log(e);
+        commit("loading", false);
+      }
+    },
+    async addPlayer({ commit }, { gameId, alias }) {
+      console.log("Killing player");
+      commit("loading", true);
+      try {
+        const { data } = await axios.post(
+          "http://localhost:8080/api/games/" + gameId,
+          {
+            alias: alias,
+          }
+        );
         commit("loading", false);
         console.log(data);
       } catch (e) {
         console.log(e);
+        commit("loading", false);
       }
     },
   },

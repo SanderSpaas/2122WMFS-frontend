@@ -1,4 +1,30 @@
-<style></style>
+<template>
+  <main>
+    <p>Error: {{ error + "" }}</p>
+    <form @submit.prevent="tryLogin" novalidate>
+      <h2>Aanmelden</h2>
+      <FormField
+        id="email"
+        v-model="email"
+        type="email"
+        :required="true"
+        label="E-mail"
+        :error="emailError"
+      ></FormField>
+
+      <FormField
+        id="password"
+        v-model="password"
+        type="password"
+        :required="true"
+        label="Wachtwoord"
+        :error="passwordError"
+      ></FormField>
+      <button type="submit" @click="submit()">Aanmelden</button>
+    </form>
+  </main>
+</template>
+
 <script>
 import FormField from "../molecules/FormField.vue";
 import { mapGetters } from "vuex";
@@ -35,8 +61,6 @@ export default {
       }
     },
     ...mapGetters({
-      authenticated: "auth/isAuthenticated",
-      user: "auth/user",
       error: "auth/error",
     }),
     props: ["password", "email"],
@@ -57,32 +81,4 @@ export default {
   },
 };
 </script>
-<template>
-  <main>
-    <p>Authenticated: {{ authenticated + "" }}</p>
-    <p>User: {{ user + "" }}</p>
-    <p>Is admin: {{ isAdmin + "" }}</p>
-    <p>Error: {{ error + "" }}</p>
-    <form @submit.prevent="tryLogin" novalidate>
-      <h2>Aanmelden</h2>
-      <FormField
-        id="email"
-        v-model="email"
-        type="email"
-        :required="true"
-        label="E-mail"
-        :error="emailError"
-      ></FormField>
-
-      <FormField
-        id="password"
-        v-model="password"
-        type="password"
-        :required="true"
-        label="Wachtwoord"
-        :error="passwordError"
-      ></FormField>
-      <button type="submit" @click="submit()">Aanmelden</button>
-    </form>
-  </main>
-</template>
+<style></style>

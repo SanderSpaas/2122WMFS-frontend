@@ -44,7 +44,7 @@ export default {
     console.log(this.$store._actions);
   },
   mounted() {
-    this.UserFromGame();
+    this.UserFromGame(this.$route.params.gameId);
   },
 };
 </script>

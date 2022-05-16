@@ -36,8 +36,11 @@ export default {
     <div>
       <!-- route outlet -->
       <!-- component matched by the route will render here -->
-      <router-link to="/gamelist">gamelist</router-link>
-      <router-link to="/chat">chat</router-link>
+      <!-- <router-link to="/gamelist">gamelist</router-link> -->
+      <!-- <router-link
+        :to="{ name: 'chat', params: { gameId: this.$route.params.gameId } }"
+        >chat</router-link
+      > -->
       <router-view />
     </div>
   </main>

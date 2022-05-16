@@ -15,9 +15,15 @@ header {
 </style>
 <template>
   <header>
-    <AtomButton class=""
-      ><Icon icon="carbon:settings" color="#f2f2f2" height="6vh" :inline="true"
-    /></AtomButton>
+    <router-link :to="{ name: 'gamelist' }">
+      <AtomButton class=""
+        ><Icon
+          icon="codicon:list-ordered"
+          color="#f2f2f2"
+          height="6vh"
+          :inline="true" /></AtomButton
+    ></router-link>
+
     <AtomButton class=""
       ><Icon
         icon="carbon:logout"

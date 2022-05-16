@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import store from "../store";
 import Home from "../components/templates/HomeView.vue";
 import Login from "../components/templates/LoginView.vue";
+import Player from "../components/templates/PlayerLoginView.vue";
 import Stats from "../components/templates/StatsView.vue";
 import Game from "../components/templates/GameView.vue";
 import Chat from "../components/templates/ChatView.vue";
@@ -21,7 +22,15 @@ const router = createRouter({
       },
     },
     {
-      path: "/stats",
+      path: "/game/:gameId/player",
+      name: "player",
+      component: Player,
+      meta: {
+        title: "Add player page",
+      },
+    },
+    {
+      path: "/game/:gameId/stats",
       name: "stats",
       component: Stats,
       meta: {
@@ -37,7 +46,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/game",
+      path: "/game/:gameId/game",
       name: "game",
       component: Game,
       meta: {
@@ -45,7 +54,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/chat",
+      path: "/game/:gameId/chat",
       name: "chat",
       component: Chat,
       meta: {
@@ -53,7 +62,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/history",
+      path: "/game/:gameId/history",
       name: "history",
       component: History,
       meta: {
@@ -95,7 +104,7 @@ router.beforeEach((to, from, next) => {
   }
   if (to.fullPath === "/login") {
     if (store.getters["auth/isAuthenticated"]) {
-      next("/home");
+      next("/gamelist");
     }
   }
   next();
