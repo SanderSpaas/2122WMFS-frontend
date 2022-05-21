@@ -1,8 +1,26 @@
-<style scoped></style>
+<style scoped>
+input {
+  border-radius: 15px;
+  padding: 5px;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+</style>
 <script>
 export default {
-  emits: ["modelValue"],
-  props: ["modelValue", "error", "label", "type", "id", "required"],
+  emits: ["update:modelValue"],
+  props: [
+    "modelValue",
+    "error",
+    "label",
+    "type",
+    "id",
+    "required",
+    "placeholder",
+  ],
 };
 </script>
 <template>
@@ -14,6 +32,7 @@ export default {
       :type="type"
       :id="id"
       :required="required"
+      :placeholder="placeholder"
     />
     <span role="”alert”">{{ error }}</span>
   </div>

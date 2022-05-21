@@ -1,7 +1,7 @@
 <template>
   <main>
     <p>Error: {{ error + "" }}</p>
-    <form @submit.prevent="tryLogin" novalidate>
+    <form @submit.prevent="submit" novalidate>
       <h2>Aanmelden</h2>
       <FormField
         id="email"
@@ -20,7 +20,7 @@
         label="Wachtwoord"
         :error="passwordError"
       ></FormField>
-      <button type="submit" @click="submit()">Aanmelden</button>
+      <button type="submit">Aanmelden</button>
     </form>
   </main>
 </template>

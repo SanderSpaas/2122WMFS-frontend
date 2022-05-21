@@ -2,8 +2,7 @@
 
 <template>
   <div>
-    <MoleculeHeader />
-    <h1>History pagina</h1>
+    <MoleculeHeader titel="Geschiedenis pagina" />
     <MoleculeNavigation />
   </div>
 </template>

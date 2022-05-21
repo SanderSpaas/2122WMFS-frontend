@@ -6,6 +6,7 @@ export default {
       games: null,
       loading: false,
       user: null,
+      chat: null,
     };
   },
   getters: {
@@ -18,6 +19,9 @@ export default {
     getUserFromGame(state) {
       return state.user;
     },
+    getChat(state) {
+      return state.chat;
+    },
   },
   mutations: {
     games(state, data) {
@@ -28,6 +32,9 @@ export default {
     },
     loading(state, loading) {
       state.loading = loading;
+    },
+    chat(state, chat) {
+      state.chat = chat;
     },
   },
   actions: {
@@ -86,18 +93,55 @@ export default {
         commit("loading", false);
       }
     },
+    //player aan game gaan toevoegen
     async addPlayer({ commit }, { gameId, alias }) {
       console.log("Killing player");
       commit("loading", true);
       try {
-        const { data } = await axios.post(
+        const { response } = await axios.post(
           "http://localhost:8080/api/games/" + gameId,
           {
             alias: alias,
           }
         );
         commit("loading", false);
-        console.log(data);
+        console.log(response);
+      } catch (e) {
+        console.log(e);
+        commit("loading", false);
+      }
+    },
+    //chat voor de huidige game gaan ophalen
+    async Chat({ commit }, gameId) {
+      console.log("Killing player");
+      commit("loading", true);
+      try {
+        const { data } = await axios.get(
+          "http://localhost:8080/api/games/" + gameId + "/chat"
+        );
+        commit("loading", false);
+        commit("chat", data.data);
+        console.log(data.data);
+      } catch (e) {
+        console.log(e);
+        commit("loading", false);
+      }
+    },
+    //chat gaan posten voor huidige game
+    async addChat({ commit, dispatch }, { gameId, message }) {
+      console.log("Killing player");
+      commit("loading", true);
+      try {
+        const { response } = await axios.post(
+          "http://localhost:8080/api/games/" + gameId + "/chat",
+          {
+            message: message,
+          }
+        );
+        commit("loading", false);
+        console.log(response);
+        //nu de messages opnieuw gaan ophalen zodat we kunnnen zien wat we verstuurd hebben
+        dispatch("Chat", gameId);
       } catch (e) {
         console.log(e);
         commit("loading", false);

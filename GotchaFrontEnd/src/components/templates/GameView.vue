@@ -2,8 +2,7 @@
 
 <template>
   <div>
-    <MoleculeHeader />
-    <h1>Game pagina</h1>
+    <MoleculeHeader titel="Game pagina" />
     <div v-if="data">
       <p>{{ data }}</p>
       <p>THIS IS YOU {{ data.user.name }} aka {{ data.alias }}</p>

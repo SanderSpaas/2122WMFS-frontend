@@ -26,6 +26,7 @@ export default {
 
 <template>
   <main id="main-content">
+    <h2>GOTCHA</h2>
     <a href="#main-content" class="skiplink"> Skip to main content </a>
     <div class="lds-ellipsis" v-if="loading || Loading">
       <div></div>
@@ -58,5 +59,8 @@ a.skiplink {
   &:focus {
     top: 0;
   }
+}
+h2 {
+  font-family: HACKED;
 }
 </style>

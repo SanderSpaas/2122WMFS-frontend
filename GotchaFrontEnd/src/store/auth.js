@@ -70,7 +70,7 @@ export default {
           });
         } catch (e) {
           console.log(e);
-          if (e.response.status === 401) {
+          if (e.status === 401) {
             commit("setError", "Your password or email is incorrect");
           } else {
             commit("setError", e);
@@ -113,11 +113,10 @@ export default {
         //cookie aanwezig dus we kunnen auto loginnen nadat we zijn gaan nakijken of we effectief authenticated zijn dmv een getUser
         const isValid = await dispatch("getUser");
         // if (isValid) {
-          commit("authenticate", true);
-          commit("login", true);
-          console.log("ooh yeah thats the stuff im logged in bb");
+        commit("authenticate", true);
+        commit("login", true);
+        console.log("ooh yeah thats the stuff im logged in bb");
         // }
-        //anders niets gaan doen
       }
     },
     async getUser({ commit }) {

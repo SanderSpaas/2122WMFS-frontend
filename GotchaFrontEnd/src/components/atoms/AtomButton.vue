@@ -18,8 +18,13 @@ button {
   background-color: rgb(183, 58, 95);
 }
 </style>
+<script>
+export default {
+  props: ["type", "id"],
+};
+</script>
 <template>
-  <button class="">
+  <button class="" :type="type" :id="id">
     <slot></slot>
   </button>
 </template>

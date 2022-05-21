@@ -1,6 +1,5 @@
 <style scoped>
 button {
-  border: none;
   border-radius: 5px 5px 0px 0px;
   transition: 0.5s;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.4)) top/100% 800%;
@@ -11,12 +10,14 @@ button:hover {
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 10vh;
 }
 </style>
 <template>
   <header>
     <router-link :to="{ name: 'gamelist' }">
-      <AtomButton class=""
+      <AtomButton class="clear"
         ><Icon
           icon="codicon:list-ordered"
           color="#f2f2f2"
@@ -24,7 +25,9 @@ header {
           :inline="true" /></AtomButton
     ></router-link>
 
-    <AtomButton class=""
+    <h1>{{ titel }}</h1>
+
+    <AtomButton class="clear"
       ><Icon
         icon="carbon:logout"
         color="#f2f2f2"
@@ -40,6 +43,7 @@ import AtomButton from "../atoms/AtomButton.vue";
 import { Icon } from "@iconify/vue";
 import store from "../../store";
 export default {
+  props: ["titel"],
   name: "MoleculeNavigation",
   components: {
     AtomButton,

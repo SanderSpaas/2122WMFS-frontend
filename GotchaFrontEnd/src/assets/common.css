@@ -38,6 +38,18 @@
 .tooltip:hover .tooltiptext {
   opacity: 1;
 } */
+/* make a button transparent */
+.clear{
+  border: none;
+    background-color: #ffffff00;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+h1{
+  text-align: center;
+}
 @media (prefers-color-scheme: light) {
   .lds-ellipsis div {
   background: rgb(127, 132, 142);
@@ -108,4 +120,16 @@
   100% {
     transform: translate(24px, 0);
   }
+}
+@font-face {
+    font-family: Hacked;
+    src: url(https://hackedfont.com/HACKED.ttf);
+}
+.active {
+    color: #42b983;
+}
+
+.exact-active-link {
+    color: #42b983;
+    font-weight: bold;
 }

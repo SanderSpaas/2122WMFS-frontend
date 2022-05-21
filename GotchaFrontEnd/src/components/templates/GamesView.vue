@@ -1,7 +1,6 @@
 <template>
   <div>
-    <MoleculeHeader />
-    <h1>ik ben de gameslijstheader :)</h1>
+    <MoleculeHeader titel="gameslijst" />
     <div class="list" v-for="game in data" :key="game.id">
       <div class="gameBlok">
         <p class="name">{{ game.name }}</p>
