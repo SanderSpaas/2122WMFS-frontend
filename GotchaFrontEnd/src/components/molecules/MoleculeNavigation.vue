@@ -54,7 +54,6 @@ export default {
 </script>
 <style scoped>
 button {
-  border: none;
   border-radius: 5px 5px 0px 0px;
   transition: 0.5s;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.4)) top/100% 800%;

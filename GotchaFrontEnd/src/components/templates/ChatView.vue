@@ -65,6 +65,15 @@
 .right {
   background-color: rgb(56, 176, 82);
 }
+.dead {
+  background-color: #da2f2f;
+}
+.deadRight:after {
+  border-color: #da2f2f transparent transparent #da2f2f !important;
+}
+.deadLeft:after {
+  border-color: #da2f2f #da2f2f transparent transparent !important;
+}
 .round {
   border-radius: 30px;
   -webkit-border-radius: 30px;
@@ -113,13 +122,18 @@ form {
         <div
           v-if="chatMessage.player.user_id === user.id"
           class="talk-bubble right tri-right round right-in"
+          :class="[chatMessage.player.dead ? ['deadRight', 'dead'] : '']"
         >
           <div class="talktext">
             <p>{{ chatMessage.message }}</p>
             <!-- <p class="info">@{{ $filters.date(chatMessage.send_at) }}</p> -->
           </div>
         </div>
-        <div v-else class="talk-bubble left tri-left round left-in">
+        <div
+          v-else
+          class="talk-bubble left tri-left round left-in"
+          :class="[chatMessage.player.dead ? ['deadLeft', 'dead'] : '']"
+        >
           <div class="talktext">
             <p>
               {{ chatMessage.message }}

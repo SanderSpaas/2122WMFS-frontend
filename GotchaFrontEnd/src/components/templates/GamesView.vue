@@ -13,10 +13,11 @@
         >
 
         <router-link
-          v-else
+          v-else-if="game.status !== 'Active'"
           :to="{ name: 'player', params: { gameId: game.id } }"
           >Join</router-link
         >
+        <p v-else>Game in progress</p>
 
         <p v-if="game.status === 'Active'">
           <Icon
