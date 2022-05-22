@@ -116,7 +116,7 @@ form {
         >
           <div class="talktext">
             <p>{{ chatMessage.message }}</p>
-            <p class="info">@{{ $filters.date(chatMessage.send_at) }}</p>
+            <!-- <p class="info">@{{ $filters.date(chatMessage.send_at) }}</p> -->
           </div>
         </div>
         <div v-else class="talk-bubble left tri-left round left-in">
@@ -124,13 +124,16 @@ form {
             <p>
               {{ chatMessage.message }}
             </p>
-            <p class="info">
-              ~{{ chatMessage.player.alias }} @{{
-                $filters.date(chatMessage.send_at)
-              }}
-            </p>
           </div>
         </div>
+        <p class="info" v-if="chatMessage.player.user_id === user.id">
+          ~You @{{ $filters.date(chatMessage.send_at) }}
+        </p>
+        <p class="info" v-else>
+          ~{{ chatMessage.player.alias }} @{{
+            $filters.date(chatMessage.send_at)
+          }}
+        </p>
       </li>
     </ol>
     <form @submit.prevent="" novalidate>
