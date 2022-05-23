@@ -52,7 +52,7 @@ img {
 
 <template>
   <div>
-    <MoleculeHeader titel="Game pagina" />
+    <MoleculeHeader titel="Game overview" />
     <div class="container" v-if="data">
       <!-- <p>{{ data }}</p>
       <p>{{ targetData }}</p> -->

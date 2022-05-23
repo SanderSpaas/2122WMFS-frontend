@@ -19,20 +19,6 @@ export default {
     getGame(state) {
       return state.game;
     },
-    getDead(state, data) {
-      let dead = 0;
-      let alive = 0;
-      console.log(data);
-      for (const speler of data) {
-        if (speler.dead) {
-          dead++;
-        } else {
-          alive++;
-        }
-      }
-      return [dead, alive];
-      //todo de aantal doden en levenden gaan tellen en in array kwakken
-    },
     isLoading(state) {
       return state.loading;
     },

@@ -34,7 +34,7 @@ ChartJS.register(
 );
 
 export default {
-  name: "BarChart",
+  name: "Dead and Alive",
   components: { Bar },
   props: {
     chartId: {
@@ -68,10 +68,10 @@ export default {
   },
   data() {
     return {
-      chartData: {
-        labels: ["Dead", "Alive"],
-        datasets: [{ data: [40, 20, 12] }],
-      },
+      // chartData: {
+      //   labels: ["January", "February", "March"],
+      //   datasets: [{ data: [40, 20, 12] }],
+      // },
       chartOptions: {
         responsive: true,
       },

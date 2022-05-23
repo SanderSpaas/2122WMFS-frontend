@@ -85,7 +85,7 @@ li {
 ol {
   overflow-x: hidden;
   overflow-y: auto;
-  height: 63vh;
+  height: 70vh;
 }
 .info {
   font-size: 13px;
@@ -103,7 +103,7 @@ form {
 
 <template>
   <div>
-    <MoleculeHeader titel="Chat pagina" />
+    <MoleculeHeader titel="Game chat" />
     <!-- <div v-if="data">
       <p>{{ data }}</p>
       <p>{{ data.user.name }} aka {{ data.alias }}</p>

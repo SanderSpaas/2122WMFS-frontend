@@ -1,9 +1,17 @@
-<style scoped>
+<style lang="scss" scoped>
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 10vh;
+  h1 {
+    color: rgb(159, 159, 159);
+    font-size: 2.2em;
+    font-family: HACKED;
+    // background: -webkit-linear-gradient(rgb(97, 97, 97), rgb(55, 36, 255));
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
+  }
 }
 </style>
 <template>

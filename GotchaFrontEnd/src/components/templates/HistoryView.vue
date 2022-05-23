@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <MoleculeHeader titel="Geschiedenis pagina" />
+    <MoleculeHeader titel="Games history" />
     <MoleculeNavigation />
   </div>
 </template>

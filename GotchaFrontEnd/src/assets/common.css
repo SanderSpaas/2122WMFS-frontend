@@ -43,6 +43,9 @@
   border: none;
     background-color: #ffffff00;
 }
+.navOffset{
+  margin-bottom: 10vh;
+}
 button{
   border: none;
   border-radius: 5px 5px 5px 5px;
