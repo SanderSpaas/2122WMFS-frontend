@@ -100,7 +100,6 @@ router.beforeEach((to, from, next) => {
     // console.log(store.getters["auth/isAuthenticated"]);
     if (!store.getters["auth/isAuthenticated"]) {
       next("/login");
-      
     }
     // return;
   }

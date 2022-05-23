@@ -111,7 +111,8 @@ export default {
         console.log("looks like you don't have a cookie bad boy");
       } else {
         //cookie aanwezig dus we kunnen auto loginnen nadat we zijn gaan nakijken of we effectief authenticated zijn dmv een getUser
-        const isValid = await dispatch("getUser");
+        // const isValid = await
+        dispatch("getUser");
         // if (isValid) {
         commit("authenticate", true);
         commit("login", true);

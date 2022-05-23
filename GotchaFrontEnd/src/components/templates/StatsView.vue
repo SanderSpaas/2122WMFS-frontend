@@ -5,6 +5,7 @@
     <MoleculeHeader titel="Stats pagina" />
     <!-- <Barchart chartData="gameData" /> -->
     {{ gameData }}
+    {{ getDead }}
     <MoleculeNavigation />
   </div>
 </template>
@@ -19,10 +20,16 @@ import { mapActions } from "vuex";
 import store from "../../store";
 
 export default {
+  // data() {
+  //   return {
+  //     DeadAlive: store.getters.getDead,
+  //   };
+  // },
   components: { MoleculeNavigation, MoleculeHeader, Barchart },
   computed: {
     ...mapGetters({
       gameData: "games/getGame",
+      getDead: "games/getDead",
     }),
   },
 
@@ -37,6 +44,11 @@ export default {
   mounted() {
     // this.UserFromGame(this.$route.params.gameId);
     this.Game(this.$route.params.gameId);
+    this.$store.dispatch("userRequest").then((data) => {
+      if (this.$store.getters.getDead(data)) {
+        console.log(data);
+      }
+    });
   },
 };
 </script>
