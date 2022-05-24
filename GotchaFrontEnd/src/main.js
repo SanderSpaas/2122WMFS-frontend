@@ -6,9 +6,7 @@ import router from "./router";
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = import.meta.env.VITE_API_BASE;
 
-store.dispatch("auth/tryAutoLogin");
 const myApp = createApp(App);
-
 myApp.config.globalProperties.$filters = {
   date(value) {
     const date = new Date(value);
@@ -21,4 +19,7 @@ myApp.config.globalProperties.$filters = {
     });
   },
 };
-myApp.use(store).use(router).mount("#app");
+
+store
+  .dispatch("auth/tryAutoLogin")
+  .finally(() => myApp.use(store).use(router).mount("#app"));

@@ -53,32 +53,32 @@ img {
 <template>
   <div>
     <MoleculeHeader titel="Game overview" />
-    <div class="container" v-if="data">
-      <!-- <p>{{ data }}</p>
-      <p>{{ targetData }}</p> -->
-      <h2>{{ data.game.name }}</h2>
-      <!-- <p>THIS IS YOU {{ data.user.name }} aka {{ data.alias }}</p> -->
+    <div class="container" v-if="player">
+      <h2>{{ player.game.name }}</h2>
       <img src="../../assets/img/avatar.png" alt="default person avatar" />
       <p v-if="targetData">
         {{ targetData.user.name }} alias: {{ targetData.alias }}
       </p>
-      <p v-else-if="data.dead">
+      <p v-else-if="player.dead">
         You are dead, suck less next time.<br />
         ¯\_(ツ)_/¯<br />Your killer: {{ killerData.user.name }} alias:
         {{ killerData.alias }}
       </p>
       <p v-else>The game hasn't started yet.<br /></p>
       <div class="items">
-        <p class="left">Murder method:</p>
-        <p class="infoBox">{{ data.game.murder_method }}</p>
-        <AtomButton v-if="!data.dead" @click="killPlayer" class="info"
+        <p v-if="targetData" class="left">Murder method:</p>
+        <p v-if="targetData" class="infoBox">{{ player.game.murder_method }}</p>
+        <AtomButton
+          v-if="!player.dead && targetData"
+          @click="killPlayer"
+          class="info"
           >I Died</AtomButton
         >
-        <AtomButton v-else-if="data.dead" disabled="true" class="info"
+        <AtomButton v-else-if="player.dead" disabled="true" class="info"
           >You are dead</AtomButton
         >
         <AtomButton
-          v-if="data.user.role === 'admin'"
+          v-if="player.user.role === 'admin'"
           @click="start"
           class="info"
           >Assign targets</AtomButton
@@ -102,8 +102,7 @@ export default {
       loggedIn: "auth/isLoggedin",
       authenticated: "auth/isAuthenticated",
       user: "auth/user",
-      role: "auth/role",
-      data: "games/getUserFromGame",
+      player: "games/getUserFromGame",
       targetData: "games/getTarget",
       killerData: "games/getKiller",
     }),

@@ -56,7 +56,7 @@
 /* CSS talk bubble */
 .talk-bubble {
   margin: 40px;
-  width: 66vw;
+  max-width: 66vw;
   height: auto;
 }
 .left {

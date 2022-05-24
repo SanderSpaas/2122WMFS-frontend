@@ -101,7 +101,7 @@ export default {
           isAlive++;
         }
       });
-      console.log(isDead + " " + isAlive);
+      // console.log(isDead + " " + isAlive);
       this.deadAndAlive = [
         {
           chartData: {

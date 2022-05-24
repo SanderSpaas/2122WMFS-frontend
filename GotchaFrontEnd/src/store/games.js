@@ -75,7 +75,7 @@ export default {
     },
     //info over de huige speler gaan opvragen
     async Game({ commit }, gameId) {
-      console.log("trying to get game info");
+      console.log("trying to get game info with id: " + gameId);
       commit("loading", true);
       try {
         const { data } = await axios.get(
@@ -91,14 +91,14 @@ export default {
     },
     //info over de huige speler gaan opvragen
     async UserFromGame({ commit }, gameId) {
-      console.log("trying to get user info");
+      console.log("trying to get user info with id: " + gameId);
       commit("loading", true);
       try {
         const { data } = await axios.get(
           "http://localhost:8080/api/games/" + gameId + "/player"
         );
         commit("loading", false);
-        console.log(data);
+        console.log(data.data);
         commit("userFromGame", data.data);
       } catch (e) {
         console.log(e);
@@ -107,7 +107,7 @@ export default {
     },
     //info over het target van de huidige speler gaan opvragen
     async Target({ commit }, gameId) {
-      console.log("trying to get target info");
+      console.log("trying to get target info with id: " + gameId);
       commit("loading", true);
       try {
         const { data } = await axios.get(
@@ -167,11 +167,11 @@ export default {
     },
     //player aan game gaan toevoegen
     async addPlayer({ commit }, { gameId, alias }) {
-      console.log("Killing player");
+      console.log("adding player");
       commit("loading", true);
       try {
         const { response } = await axios.post(
-          "http://localhost:8080/api/games/" + gameId,
+          "http://localhost:8080/api/games/" + gameId + "/add",
           {
             alias: alias,
           }
@@ -185,7 +185,7 @@ export default {
     },
     //chat voor de huidige game gaan ophalen
     async Chat({ commit }, gameId) {
-      console.log("Killing player");
+      console.log("getting chats");
       commit("loading", true);
       try {
         const { data } = await axios.get(
@@ -201,7 +201,7 @@ export default {
     },
     //chat gaan posten voor huidige game
     async addChat({ commit, dispatch }, { gameId, message }) {
-      console.log("Killing player");
+      console.log("sending chat");
       commit("loading", true);
       try {
         const { response } = await axios.post(

@@ -1,8 +1,8 @@
 <template>
   <div>
     <MoleculeHeader titel="gameslijst" />
-    <div class="list" v-for="game in data" :key="game.id">
-      <div class="gameBlok">
+    <ul v-for="game in data" :key="game.id">
+      <li>
         <p class="name">{{ game.name }}</p>
         <p>{{ game.players.length }}👤</p>
 
@@ -35,8 +35,8 @@
             :inline="true"
           />
         </p>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -61,7 +61,7 @@ export default {
       Games: "games/Games",
     }),
     joinOrContinue(players, user) {
-      return !!players?.find((p) => p.id === user.id);
+      return !!players?.find((p) => p.user_id === user.id);
     },
   },
   created() {
@@ -73,7 +73,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 @import "../../assets/common.css";
 .name {
   width: 30vw;
@@ -87,13 +87,24 @@ export default {
   flex-direction: column;
   justify-content: space-evenly; */
 }
-.gameBlok {
+li {
   display: flex;
-  justify-content: space-evenly;
   background-color: rgb(249, 249, 249);
   border-radius: 5px 5px 5px 5px;
   padding: 1em;
   margin: 1em;
   color: rgb(0, 0, 0);
+  * {
+    font-size: 20px;
+    width: 30vw;
+    height: 4vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .name {
+    text-align: left;
+  }
 }
 </style>
