@@ -104,19 +104,6 @@ form {
 <template>
   <div>
     <MoleculeHeader titel="Game chat" />
-    <!-- <div v-if="data">
-      <p>{{ data }}</p>
-      <p>{{ data.user.name }} aka {{ data.alias }}</p>
-    </div> -->
-
-    <!-- <div v-if="user">
-      <p>Logged in: {{ loggedIn + "" }}</p>
-      <p>Authenticated: {{ authenticated + "" }}</p>
-      <p>User: {{ user.name + "" }}</p>
-      <p>role: {{ user.role + "" }}</p>
-    </div> -->
-    <!-- {{ chat }} -->
-    <!-- <div v-if="chat"> -->
     <ol>
       <li v-for="chatMessage in chat" :key="chatMessage.id">
         <div
@@ -126,7 +113,6 @@ form {
         >
           <div class="talktext">
             <p>{{ chatMessage.message }}</p>
-            <!-- <p class="info">@{{ $filters.date(chatMessage.send_at) }}</p> -->
           </div>
         </div>
         <div

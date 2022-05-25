@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../assets/common.css";
+@import "../../assets/common.scss";
 ul {
   padding: 1em;
   width: 100%;

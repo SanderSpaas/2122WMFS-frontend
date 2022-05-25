@@ -38,15 +38,18 @@
 .tooltip:hover .tooltiptext {
   opacity: 1;
 } */
-/* make a button transparent */
-.clear{
-  border: none;
-    background-color: #ffffff00;
+body {
+  background-color: #25143e;
 }
-.navOffset{
+/* make a button transparent */
+.clear {
+  border: none;
+  background-color: #ffffff00;
+}
+.navOffset {
   margin-bottom: 10vh;
 }
-button{
+button {
   border: none;
   border-radius: 5px 5px 5px 5px;
   transition: 0.5s;
@@ -59,19 +62,19 @@ button:disabled {
 button:hover {
   background-position: bottom;
 }
-h1{
+h1 {
   text-align: center;
 }
 @media (prefers-color-scheme: light) {
   .lds-ellipsis div {
-  background: rgb(127, 132, 142);
-}
+    background: rgb(127, 132, 142);
+  }
 }
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-    .lds-ellipsis div {
-  background: #fff;
-}
+  .lds-ellipsis div {
+    background: #fff;
+  }
 }
 .lds-ellipsis {
   position: absolute;
@@ -134,17 +137,26 @@ h1{
   }
 }
 @font-face {
-    font-family: Hacked;
-    src: url(https://hackedfont.com/HACKED.ttf);
+  font-family: Hacked;
+  src: url(https://hackedfont.com/HACKED.ttf);
+}
+.responsive {
+  width: 100%;
+  height: auto;
 }
 .active {
-    color: #42b983;
+  color: #42b983;
 }
 
 .exact-active-link {
-    color: #42b983;
-    font-weight: bold;
+  color: #42b983;
+  font-weight: bold;
 }
+$color-orange: rgb(181, 68, 63);
+$color-red:rgb(130, 51, 62);
+$color-blue: rgb(179, 194, 242);
+$color-gray: rgb(57, 87, 86);
+$color-purple: rgb(103, 41, 62);
 .yellow {
   background-color: rgb(238, 188, 123);
 }
@@ -152,8 +164,20 @@ h1{
   background-color: rgb(47, 208, 218);
 }
 .green {
-  background-color: rgb(58, 183, 85);
+  background-color: rgb(58, 183,   85);
 }
 .pink {
   background-color: rgb(183, 58, 95);
 }
+.orange {
+  background-color: $color-orange;
+}
+.red {
+  background-color: $color-red;
+}
+.blue{
+  background-color: $color-blue;
+}
+.gray {background-color: $color-gray; }
+
+.purple{background-color: $color-purple;}

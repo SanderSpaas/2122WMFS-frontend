@@ -26,7 +26,6 @@ export default {
 
 <template>
   <main id="main-content">
-    <!-- <h2>GOTCHA</h2> -->
     <a href="#main-content" class="skiplink"> Skip to main content </a>
     <div class="lds-ellipsis" v-if="loading || Loading">
       <div></div>
@@ -35,13 +34,6 @@ export default {
       <div></div>
     </div>
     <div>
-      <!-- route outlet -->
-      <!-- component matched by the route will render here -->
-      <!-- <router-link to="/gamelist">gamelist</router-link> -->
-      <!-- <router-link
-        :to="{ name: 'chat', params: { gameId: this.$route.params.gameId } }"
-        >chat</router-link
-      > -->
       <router-view />
     </div>
   </main>
@@ -49,7 +41,7 @@ export default {
 
 <style lang="scss">
 @import "./assets/base.css";
-@import "./assets/common.css";
+@import "./assets/common.scss";
 a.skiplink {
   position: absolute;
   // background-color: palevioletred;
@@ -60,7 +52,7 @@ a.skiplink {
     top: 0;
   }
 }
-h2 {
-  font-family: HACKED;
-}
+// h2 {
+//   font-family: HACKED;
+// }
 </style>

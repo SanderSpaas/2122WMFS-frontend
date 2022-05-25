@@ -7,7 +7,8 @@ export default {
       loggedIn: false,
       authenticated: false,
       user: null,
-      error: null,
+      loginError: null,
+      registerError: null,
       loading: false,
     };
   },
@@ -21,8 +22,11 @@ export default {
     user(state) {
       return state.user;
     },
-    error(state) {
-      return state.error;
+    loginError(state) {
+      return state.loginError;
+    },
+    registerError(state) {
+      return state.registerError;
     },
     isLoading(state) {
       return state.loading;
@@ -41,8 +45,11 @@ export default {
     authenticate(state, authenticated) {
       state.authenticated = authenticated;
     },
-    setError(state, error) {
-      state.error = error;
+    setLoginError(state, error) {
+      state.loginError = error;
+    },
+    setRegisterError(state, error) {
+      state.registerError = error;
     },
     loading(state, loading) {
       state.loading = loading;
@@ -70,14 +77,40 @@ export default {
           });
         } catch (e) {
           console.log(e);
-          if (e.status === 401) {
-            commit("setError", "Your password or email is incorrect");
-          } else {
-            commit("setError", e);
-          }
+          commit("setLoginError", e.response.data.message);
           commit("loading", false);
         }
         dispatch("getUser");
+      }
+    },
+    async register({ commit }, { name, email, password }) {
+      if (this.isAuthenticated) {
+        console.log("you are logged in");
+      } else {
+        console.log(
+          "Trying to register user: " + name + "" + email + " " + password
+        );
+        commit("loading", true);
+        try {
+          await axios.get("http://localhost:8080/sanctum/csrf-cookie");
+          const { data } = await axios.post(
+            "http://localhost:8080/api/user/add",
+            {
+              name: name,
+              email: email,
+              password: password,
+            }
+          );
+          commit("loading", false);
+          console.log(data);
+          router.push({
+            name: "login",
+          });
+        } catch (e) {
+          console.log(e);
+          commit("setRegisterError", e.response.data.message);
+          commit("loading", false);
+        }
       }
     },
     async logout({ commit }) {

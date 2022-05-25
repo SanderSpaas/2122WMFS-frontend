@@ -1,7 +1,8 @@
 <style scoped>
 input {
-  border-radius: 15px;
+  border-radius: 5px;
   padding: 5px;
+  width: 50vw;
 }
 .form-field {
   display: flex;

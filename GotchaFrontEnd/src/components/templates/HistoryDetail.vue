@@ -34,7 +34,6 @@ li {
 
 <script>
 import StatsShower from "../organisms/StatsShower.vue";
-import MoleculeNavigation from "../molecules/MoleculeNavigation.vue";
 import MoleculeHeader from "../molecules/MoleculeHeader.vue";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";

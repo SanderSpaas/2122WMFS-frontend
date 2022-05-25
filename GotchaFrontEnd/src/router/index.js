@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import store from "../store";
 import Home from "../components/templates/HomeView.vue";
 import Login from "../components/templates/LoginView.vue";
+import Register from "../components/templates/RegisterView.vue";
 import Player from "../components/templates/PlayerLoginView.vue";
 import Stats from "../components/templates/StatsView.vue";
 import HistoryDetail from "../components/templates/HistoryDetail.vue";
@@ -20,6 +21,14 @@ const router = createRouter({
       component: Login,
       meta: {
         title: "Login page",
+      },
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: Register,
+      meta: {
+        title: "Register page",
       },
     },
     {
@@ -105,18 +114,15 @@ const router = createRouter({
 });
 //navigation guards gaan toevoegen
 router.beforeEach((to, from, next) => {
-  if (to.fullPath !== "/login") {
-    // console.log(store.getters["auth/isAuthenticated"]);
+  if (to.fullPath !== "/login" && to.fullPath !== "/register") {
     if (!store.getters["auth/isAuthenticated"]) {
       next("/login");
     }
-    // return;
   }
-  if (to.fullPath === "/login") {
+  if (to.fullPath === "/login" || to.fullPath === "/register") {
     if (store.getters["auth/isAuthenticated"]) {
       next("/gamelist");
     }
-    // return;
   }
   next();
 });

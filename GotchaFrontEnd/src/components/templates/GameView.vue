@@ -1,4 +1,4 @@
-<style scoped>
+<style scoped lang="scss">
 * {
   color: white;
 }
@@ -36,7 +36,6 @@ img {
     width: 20vw;
   }
 }
-
 .container {
   display: flex;
   flex-direction: column;
@@ -60,10 +59,14 @@ img {
 
 <template>
   <div>
-    <MoleculeHeader titel="Game overview" />
+    <MoleculeHeader titel="Game view" />
     <div class="container" v-if="player">
       <h2>{{ player.game.name }}</h2>
-      <img src="../../assets/img/avatar.png" alt="default person avatar" />
+      <img
+        class="responsive"
+        src="../../assets/img/Gotcha.gif"
+        alt="logo van Gotcha"
+      />
       <p v-if="targetData">
         {{ targetData.user.name }} alias: {{ targetData.alias }}
       </p>
@@ -72,7 +75,7 @@ img {
         ¯\_(ツ)_/¯<br />Your killer: {{ killerData.user.name }} alias:
         {{ killerData.alias }}
       </p>
-      <p v-else>The game hasn't started yet.<br /></p>
+      <p v-else>The game hasn't started yet. <br />(⌐■_■)</p>
       <div class="items">
         <p v-if="targetData" class="left">Murder method:</p>
         <p v-if="targetData" class="infoBox">{{ player.game.murder_method }}</p>

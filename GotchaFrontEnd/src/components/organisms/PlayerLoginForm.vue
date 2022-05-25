@@ -41,7 +41,7 @@ export default {
       }
     },
     ...mapGetters({
-      error: "auth/error",
+      error: "auth/loginError",
     }),
     props: ["alias"],
   },

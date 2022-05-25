@@ -3,7 +3,7 @@
     <router-link
       :to="{ name: 'stats', params: { gameId: this.$route.params.gameId } }"
     >
-      <AtomButton class="yellow"
+      <AtomButton class="orange"
         ><Icon
           icon="cil:graph"
           color="#f2f2f2"
@@ -13,7 +13,7 @@
     <router-link
       :to="{ name: 'game', params: { gameId: this.$route.params.gameId } }"
     >
-      <AtomButton class="lightblue"
+      <AtomButton class="red"
         ><Icon
           icon="carbon:game-console"
           color="#f2f2f2"
@@ -23,7 +23,7 @@
     <router-link
       :to="{ name: 'chat', params: { gameId: this.$route.params.gameId } }"
     >
-      <AtomButton class="green"
+      <AtomButton class="purple"
         ><Icon
           icon="bx:message-rounded-detail"
           color="#f2f2f2"
@@ -52,13 +52,15 @@ export default {
   },
 };
 </script>
-<style scoped>
-@import "../../assets/common.css";
+<style scoped lang="scss">
+@import "../../assets/common.scss";
 button {
   border-radius: 5px 5px 0px 0px;
   transition: 0.5s;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.4)) top/100% 800%;
-  width: 33.33vw;
+  width: 33.33vw !important;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 button:hover {
   background-position: bottom;
@@ -67,5 +69,8 @@ button:hover {
   position: fixed;
   bottom: 0;
   width: 100%;
+  // box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+  //   rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+  //   rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 </style>

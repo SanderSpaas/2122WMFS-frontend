@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../assets/common.css";
+@import "../../assets/common.scss";
 MoleculeNavigation {
   margin-bottom: 10vh;
 }

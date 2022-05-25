@@ -2,6 +2,18 @@
   <form @submit.prevent="submit" novalidate>
     <!-- <h2>Login</h2> -->
     <p v-if="error">Error: {{ error + "" }}</p>
+    <p class="name">
+      Welcome target!<br />
+      whoops uhhh... I mean: {{ name }}
+    </p>
+    <FormField
+      id="name"
+      v-model="name"
+      type="name"
+      :required="true"
+      label="Name"
+      :error="nameError"
+    ></FormField>
     <FormField
       id="email"
       v-model="email"
@@ -19,10 +31,10 @@
       label="Wachtwoord"
       :error="passwordError"
     ></FormField>
-    <button type="submit">Login</button>
+    <button type="submit">Register</button>
     <p>
-      Nog geen account? Registreer dan
-      <router-link :to="{ name: 'register' }"> hier</router-link>.
+      Heb je al een account? Log dan
+      <router-link :to="{ name: 'login' }"> hier</router-link> in.
     </p>
   </form>
 </template>
@@ -36,6 +48,7 @@ import store from "../../store";
 export default {
   data() {
     return {
+      name: null,
       password: null,
       email: null,
       submitted: false,
@@ -43,6 +56,16 @@ export default {
   },
   components: { FormField },
   computed: {
+    nameError() {
+      if (this.submitted === false) {
+        return null;
+      }
+      if (this.name === null) {
+        return "Name is een verplicht veld en werd niet ingevuld.";
+      } else {
+        return null;
+      }
+    },
     emailError() {
       if (this.submitted === false) {
         return null;
@@ -64,16 +87,21 @@ export default {
       }
     },
     ...mapGetters({
-      error: "auth/loginError",
+      error: "auth/registerError",
     }),
-    props: ["password", "email"],
+    props: ["password", "email", "name"],
   },
   methods: {
     submit() {
       this.submitted = true;
-      if (this.passwordError === null && this.emailError === null) {
+      if (
+        this.nameError === null &&
+        this.passwordError === null &&
+        this.emailError === null
+      ) {
         console.log("I have submitted");
-        store.dispatch("auth/login", {
+        store.dispatch("auth/register", {
+          name: this.name,
           email: this.email,
           password: this.password,
         });
@@ -100,6 +128,10 @@ button {
   padding: 1em;
   width: 50vw;
   margin-top: 1em;
+}
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 a {
   color: $color-orange;

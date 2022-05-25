@@ -6,19 +6,20 @@
         src="../../assets/img/Gotcha.gif"
         alt="logo van Gotcha"
       />
-      <LoginForm />
+     
+      <RegisterForm />
     </div>
   </main>
 </template>
 <script>
-import LoginForm from "../organisms/LoginForm.vue";
+import RegisterForm from "../organisms/RegisterForm.vue";
 export default {
   // data() {
   //   return {
   //     data: null,
   //   };
   // },
-  components: { LoginForm },
+  components: { RegisterForm },
   methods: {},
 };
 </script>
