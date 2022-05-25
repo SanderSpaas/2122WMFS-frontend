@@ -145,3 +145,15 @@ h1{
     color: #42b983;
     font-weight: bold;
 }
+.yellow {
+  background-color: rgb(238, 188, 123);
+}
+.lightblue {
+  background-color: rgb(47, 208, 218);
+}
+.green {
+  background-color: rgb(58, 183, 85);
+}
+.pink {
+  background-color: rgb(183, 58, 95);
+}

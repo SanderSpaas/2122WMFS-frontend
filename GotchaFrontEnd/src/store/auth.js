@@ -104,19 +104,14 @@ export default {
           router.push("/login");
         });
     },
-    async tryAutoLogin({ commit, dispatch }) {
+    async tryAutoLogin({ dispatch }) {
       console.log("trying to log you in sir");
       if (document.cookie.indexOf("XSRF-TOKEN") === -1) {
         //geen cookie aanwezig
         console.log("looks like you don't have a cookie bad boy");
       } else {
         //cookie aanwezig dus we kunnen auto loginnen nadat we zijn gaan nakijken of we effectief authenticated zijn dmv een getUser
-        const isValid = await dispatch("getUser");
-        if (isValid) {
-          commit("authenticate", true);
-          commit("login", true);
-          console.log("ooh yeah thats the stuff im logged in bb");
-        }
+        await dispatch("getUser");
       }
     },
     async getUser({ commit }) {

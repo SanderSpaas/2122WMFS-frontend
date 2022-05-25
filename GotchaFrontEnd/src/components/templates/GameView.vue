@@ -24,11 +24,19 @@ button {
   font-size: 17px;
 }
 img {
-  width: 100%;
+  /* width: 100%; */
   height: auto;
-  padding-left: 6.5em;
-  padding-right: 6.5em;
+  width: 50vw;
 }
+@media only screen and (min-width: 768px) {
+  img {
+    width: 20vw;
+  }
+  button {
+    width: 20vw;
+  }
+}
+
 .container {
   display: flex;
   flex-direction: column;

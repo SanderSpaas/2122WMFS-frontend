@@ -30,7 +30,7 @@
           height="6vh"
           :inline="true" /></AtomButton
     ></router-link>
-    <router-link
+    <!-- <router-link
       :to="{ name: 'history', params: { gameId: this.$route.params.gameId } }"
       ><AtomButton class="pink"
         ><Icon
@@ -38,7 +38,7 @@
           color="#f2f2f2"
           height="6vh"
           :inline="true" /></AtomButton
-    ></router-link>
+    ></router-link> -->
   </div>
 </template>
 <script>
@@ -53,10 +53,12 @@ export default {
 };
 </script>
 <style scoped>
+@import "../../assets/common.css";
 button {
   border-radius: 5px 5px 0px 0px;
   transition: 0.5s;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.4)) top/100% 800%;
+  width: 33.33vw;
 }
 button:hover {
   background-position: bottom;

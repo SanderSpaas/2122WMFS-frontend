@@ -4,6 +4,7 @@ import Home from "../components/templates/HomeView.vue";
 import Login from "../components/templates/LoginView.vue";
 import Player from "../components/templates/PlayerLoginView.vue";
 import Stats from "../components/templates/StatsView.vue";
+import HistoryDetail from "../components/templates/HistoryDetail.vue";
 import Game from "../components/templates/GameView.vue";
 import Chat from "../components/templates/ChatView.vue";
 import History from "../components/templates/HistoryView.vue";
@@ -62,11 +63,19 @@ const router = createRouter({
       },
     },
     {
-      path: "/game/:gameId/history",
+      path: "/game/history",
       name: "history",
       component: History,
       meta: {
         title: "History page",
+      },
+    },
+    {
+      path: "/game/history/:gameId",
+      name: "historyDetail",
+      component: HistoryDetail,
+      meta: {
+        title: "History Detail",
       },
     },
     {

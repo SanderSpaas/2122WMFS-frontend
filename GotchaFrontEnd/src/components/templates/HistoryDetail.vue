@@ -28,10 +28,7 @@ li {
 <template>
   <div>
     <MoleculeHeader titel="Statistics" />
-    <div class="navOffset">
-      <StatsShower :gameData="gameData" :deadAndAlive="deadAndAlive" />
-      <MoleculeNavigation />
-    </div>
+    <StatsShower :gameData="gameData" :deadAndAlive="deadAndAlive" />
   </div>
 </template>
 
@@ -41,6 +38,7 @@ import MoleculeNavigation from "../molecules/MoleculeNavigation.vue";
 import MoleculeHeader from "../molecules/MoleculeHeader.vue";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
+import { Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
@@ -65,7 +63,7 @@ export default {
   data: () => ({
     deadAndAlive: null,
   }),
-  components: { MoleculeNavigation, MoleculeHeader, StatsShower },
+  components: { MoleculeHeader, StatsShower },
   computed: {
     ...mapGetters({
       gameData: "games/getGame",

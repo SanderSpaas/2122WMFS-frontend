@@ -16,7 +16,15 @@ header {
 </style>
 <template>
   <header>
-    <router-link :to="{ name: 'gamelist' }">
+    <router-link v-if="history" :to="{ name: 'history' }"
+      ><AtomButton class="clear"
+        ><Icon
+          icon="ant-design:history-outlined"
+          color="#f2f2f2"
+          height="6vh"
+          :inline="true" /></AtomButton
+    ></router-link>
+    <router-link v-else :to="{ name: 'gamelist' }">
       <AtomButton class="clear"
         ><Icon
           icon="codicon:list-ordered"
@@ -43,7 +51,7 @@ import AtomButton from "../atoms/AtomButton.vue";
 import { Icon } from "@iconify/vue";
 import store from "../../store";
 export default {
-  props: ["titel"],
+  props: ["titel", "history"],
   name: "MoleculeNavigation",
   components: {
     AtomButton,
