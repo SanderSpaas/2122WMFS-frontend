@@ -1,37 +1,8 @@
-<style lang="scss" scoped>
-.container {
-  padding: 1em;
-}
-ul {
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 30vh;
-}
-li {
-  display: flex;
-  border-bottom: 1px solid;
-  p {
-    font-size: 20px;
-    text-align: center;
-    width: 30vw;
-    height: 4vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .name {
-    text-align: left;
-  }
-}
-</style>
-
 <template>
   <div>
     <MoleculeHeader titel="Statistics" />
-    <div class="navOffset">
-      <StatsShower :gameData="gameData" :deadAndAlive="deadAndAlive" />
-      <MoleculeNavigation />
-    </div>
+    <StatsShower :gameData="gameData" :deadAndAlive="deadAndAlive" />
+    <MoleculeNavigation />
   </div>
 </template>
 
@@ -118,3 +89,30 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+@import "../../assets/common.scss";
+.container {
+  padding: 1em;
+}
+ul {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 30vh;
+}
+li {
+  display: flex;
+  border-bottom: 1px solid;
+  p {
+    font-size: 20px;
+    text-align: center;
+    width: 30vw;
+    height: 4vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .name {
+    text-align: left;
+  }
+}
+</style>

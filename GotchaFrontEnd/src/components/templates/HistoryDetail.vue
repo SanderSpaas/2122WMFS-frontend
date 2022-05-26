@@ -1,30 +1,3 @@
-<style lang="scss" scoped>
-.container {
-  padding: 1em;
-}
-ul {
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 30vh;
-}
-li {
-  display: flex;
-  border-bottom: 1px solid;
-  p {
-    font-size: 20px;
-    text-align: center;
-    width: 30vw;
-    height: 4vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .name {
-    text-align: left;
-  }
-}
-</style>
-
 <template>
   <div>
     <MoleculeHeader titel="Statistics" />
@@ -37,7 +10,6 @@ import StatsShower from "../organisms/StatsShower.vue";
 import MoleculeHeader from "../molecules/MoleculeHeader.vue";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
-import { Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
@@ -115,3 +87,29 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.container {
+  padding: 1em;
+}
+ul {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 30vh;
+}
+li {
+  display: flex;
+  border-bottom: 1px solid;
+  p {
+    font-size: 20px;
+    text-align: center;
+    width: 30vw;
+    height: 4vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .name {
+    text-align: left;
+  }
+}
+</style>

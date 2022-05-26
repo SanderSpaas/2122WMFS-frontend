@@ -6,7 +6,7 @@
         src="../../assets/img/Gotcha.gif"
         alt="logo van Gotcha"
       />
-     
+
       <RegisterForm />
     </div>
   </main>

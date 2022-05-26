@@ -1,14 +1,15 @@
 <style lang="scss" scoped>
+@import "../../assets/common.scss";
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 10vh;
   h1 {
-    color: rgb(159, 159, 159);
+    // color: rgb(159, 159, 159);
     font-size: 2.2em;
     font-family: HACKED;
-    // background: -webkit-linear-gradient(rgb(97, 97, 97), rgb(55, 36, 255));
+    // background: -webkit-linear-gradient($color-red, $color-orange);
     // -webkit-background-clip: text;
     // -webkit-text-fill-color: transparent;
   }

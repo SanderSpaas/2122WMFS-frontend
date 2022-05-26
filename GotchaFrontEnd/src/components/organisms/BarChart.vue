@@ -34,7 +34,7 @@ ChartJS.register(
 );
 
 export default {
-  name: "Dead and Alive",
+  name: "DeadandAlive",
   components: { Bar },
   props: {
     chartId: {

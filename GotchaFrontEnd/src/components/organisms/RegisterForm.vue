@@ -1,8 +1,7 @@
 <template>
   <form @submit.prevent="submit" novalidate>
-    <!-- <h2>Login</h2> -->
-    <p v-if="error">Error: {{ error + "" }}</p>
-    <p class="name">
+    <validation-errors :errors="errors" v-if="errors"></validation-errors>
+    <p v-if="!errors" class="name">
       Welcome target!<br />
       whoops uhhh... I mean: {{ name }}
     </p>
@@ -41,8 +40,8 @@
 
 <script>
 import FormField from "../molecules/FormField.vue";
-import { mapGetters } from "vuex";
 import store from "../../store";
+import ValidationErrors from "../molecules/ValidationErrors.vue";
 
 // import { mapActions } from "vuex";
 export default {
@@ -52,16 +51,17 @@ export default {
       password: null,
       email: null,
       submitted: false,
+      errors: null,
     };
   },
-  components: { FormField },
+  components: { FormField, ValidationErrors },
   computed: {
     nameError() {
       if (this.submitted === false) {
         return null;
       }
       if (this.name === null) {
-        return "Name is een verplicht veld en werd niet ingevuld.";
+        return "Name is een verplicht veld.";
       } else {
         return null;
       }
@@ -71,7 +71,7 @@ export default {
         return null;
       }
       if (this.email === null) {
-        return "Email is een verplicht veld en werd niet ingevuld.";
+        return "Email is een verplicht veld.";
       } else {
         return null;
       }
@@ -81,18 +81,15 @@ export default {
         return null;
       }
       if (this.password === null) {
-        return "Wachtwoord is een verplicht veld en werd niet ingevuld.";
+        return "Wachtwoord is een verplicht veld.";
       } else {
         return null;
       }
     },
-    ...mapGetters({
-      error: "auth/registerError",
-    }),
     props: ["password", "email", "name"],
   },
   methods: {
-    submit() {
+    async submit() {
       this.submitted = true;
       if (
         this.nameError === null &&
@@ -100,13 +97,15 @@ export default {
         this.emailError === null
       ) {
         console.log("I have submitted");
-        store.dispatch("auth/register", {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-        });
-      } else {
-        console.log("you aint getting in you scoundrel");
+        try {
+          this.errors = await store.dispatch("auth/register", {
+            name: this.name,
+            email: this.email,
+            password: this.password,
+          });
+        } catch (e) {
+          console.log(e.response.data.message);
+        }
       }
     },
   },
@@ -114,30 +113,5 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "../../assets/common.scss";
-h2 {
-  font-size: 2.5em;
-}
-form {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-button {
-  background-color: $color-orange;
-  color: white;
-  padding: 1em;
-  width: 50vw;
-  margin-top: 1em;
-}
-.name {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-a {
-  color: $color-orange;
-}
-p {
-  text-align: center;
-  width: 60vw;
-}
+@import "../../assets/login.scss";
 </style>

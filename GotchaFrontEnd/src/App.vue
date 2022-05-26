@@ -44,7 +44,6 @@ export default {
 @import "./assets/common.scss";
 a.skiplink {
   position: absolute;
-  // background-color: palevioletred;
   top: -100%;
   left: 0;
 

@@ -1,7 +1,6 @@
 <template>
   <form @submit.prevent="submit" novalidate>
-    <!-- <h2>Login</h2> -->
-    <p v-if="error">Error: {{ error + "" }}</p>
+    <validation-errors :errors="errors" v-if="errors"></validation-errors>
     <FormField
       id="email"
       v-model="email"
@@ -29,8 +28,8 @@
 
 <script>
 import FormField from "../molecules/FormField.vue";
-import { mapGetters } from "vuex";
 import store from "../../store";
+import ValidationErrors from "../molecules/ValidationErrors.vue";
 
 // import { mapActions } from "vuex";
 export default {
@@ -39,16 +38,17 @@ export default {
       password: null,
       email: null,
       submitted: false,
+      errors: null,
     };
   },
-  components: { FormField },
+  components: { FormField, ValidationErrors },
   computed: {
     emailError() {
       if (this.submitted === false) {
         return null;
       }
-      if (this.email === null) {
-        return "Email is een verplicht veld en werd niet ingevuld.";
+      if (this.email === null || this.email === "") {
+        return "Email is een verplicht veld.";
       } else {
         return null;
       }
@@ -57,26 +57,27 @@ export default {
       if (this.submitted === false) {
         return null;
       }
-      if (this.password === null) {
-        return "Wachtwoord is een verplicht veld en werd niet ingevuld.";
+      if (this.password === null || this.password === "") {
+        return "Wachtwoord is een verplicht veld.";
       } else {
         return null;
       }
     },
-    ...mapGetters({
-      error: "auth/loginError",
-    }),
     props: ["password", "email"],
   },
   methods: {
-    submit() {
+    async submit() {
       this.submitted = true;
       if (this.passwordError === null && this.emailError === null) {
         console.log("I have submitted");
-        store.dispatch("auth/login", {
-          email: this.email,
-          password: this.password,
-        });
+        try {
+          this.errors = await store.dispatch("auth/login", {
+            email: this.email,
+            password: this.password,
+          });
+        } catch (e) {
+          console.log(e.response.data.message);
+        }
       } else {
         console.log("you aint getting in you scoundrel");
       }
@@ -86,26 +87,5 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "../../assets/common.scss";
-h2 {
-  font-size: 2.5em;
-}
-form {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-button {
-  background-color: $color-orange;
-  color: white;
-  padding: 1em;
-  width: 50vw;
-  margin-top: 1em;
-}
-a {
-  color: $color-orange;
-}
-p {
-  text-align: center;
-  width: 60vw;
-}
+@import "../../assets/login.scss";
 </style>

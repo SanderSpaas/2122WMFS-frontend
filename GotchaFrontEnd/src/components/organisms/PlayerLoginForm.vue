@@ -1,72 +1,74 @@
 <template>
   <main>
-    <p>Error: {{ error + "" }}</p>
     <form @submit.prevent="tryLogin" novalidate>
-      <h2>Creëer je alias voor deze game</h2>
+      <validation-errors :errors="errors" v-if="errors"></validation-errors>
       <FormField
         id="alias"
         v-model="alias"
         type="name"
         :required="true"
-        label="Alias"
+        label="Alias aka nickname"
         :error="aliasError"
       ></FormField>
-      <button type="submit" @click="submit()">Aanmelden</button>
+      <button type="submit" @click="submit()">Play</button>
     </form>
   </main>
 </template>
 
 <script>
 import FormField from "../molecules/FormField.vue";
-import { mapGetters } from "vuex";
 import store from "../../store";
-// import { mapActions } from "vuex";
+import ValidationErrors from "../molecules/ValidationErrors.vue";
 export default {
   data() {
     return {
       alias: null,
       submitted: false,
+      errors: null,
     };
   },
-  components: { FormField },
+  components: { FormField, ValidationErrors },
   computed: {
     aliasError() {
       if (this.submitted === false) {
         return null;
       }
-      if (this.alias === null) {
-        return "Alias is een verplicht veld en werd niet ingevuld.";
+      if (this.alias === null || this.alias === "") {
+        return "Alias is een verplicht veld.";
       } else {
         return null;
       }
     },
-    ...mapGetters({
-      error: "auth/loginError",
-    }),
     props: ["alias"],
   },
   methods: {
-    submit() {
+    async submit() {
       this.submitted = true;
       if (this.aliasError === null) {
         console.log("I have submitted");
         try {
-          store.dispatch("games/addPlayer", {
+          (this.errors = await store.dispatch("games/addPlayer", {
             alias: this.alias,
             gameId: this.$route.params.gameId,
-          });
-          this.$router.push({
-            name: "chat",
-            params: { gameId: this.$route.params.gameId },
-          });
+          })),
+            () => {
+              this.$router.push({
+                name: "chat",
+                params: { gameId: this.$route.params.gameId },
+              });
+            };
         } catch (e) {
-          console.log(e);
+          console.log(e.response.data.message);
         }
       } else {
-        console.log("looks like you forgot something huh");
+        console.log("name not filled in");
       }
     },
   },
 };
 </script>
-<style></style>
+<style lang="scss" scoped>
+// @import "../../assets/common.scss";
+@import "../../assets/common.scss";
+@import "../../assets/login.scss";
+</style>

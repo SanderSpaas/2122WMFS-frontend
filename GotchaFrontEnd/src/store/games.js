@@ -181,6 +181,7 @@ export default {
       } catch (e) {
         console.log(e);
         commit("loading", false);
+        return e.response.data;
       }
     },
     //chat voor de huidige game gaan ophalen

@@ -7,8 +7,6 @@ export default {
       loggedIn: false,
       authenticated: false,
       user: null,
-      loginError: null,
-      registerError: null,
       loading: false,
     };
   },
@@ -21,12 +19,6 @@ export default {
     },
     user(state) {
       return state.user;
-    },
-    loginError(state) {
-      return state.loginError;
-    },
-    registerError(state) {
-      return state.registerError;
     },
     isLoading(state) {
       return state.loading;
@@ -44,12 +36,6 @@ export default {
     },
     authenticate(state, authenticated) {
       state.authenticated = authenticated;
-    },
-    setLoginError(state, error) {
-      state.loginError = error;
-    },
-    setRegisterError(state, error) {
-      state.registerError = error;
     },
     loading(state, loading) {
       state.loading = loading;
@@ -77,8 +63,8 @@ export default {
           });
         } catch (e) {
           console.log(e);
-          commit("setLoginError", e.response.data.message);
           commit("loading", false);
+          return e.response.data;
         }
         dispatch("getUser");
       }
@@ -108,8 +94,8 @@ export default {
           });
         } catch (e) {
           console.log(e);
-          commit("setRegisterError", e.response.data.message);
           commit("loading", false);
+          return e.response.data;
         }
       }
     },

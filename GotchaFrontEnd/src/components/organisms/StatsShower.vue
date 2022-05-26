@@ -1,36 +1,9 @@
-<style lang="scss" scoped>
-.container {
-  padding: 1em;
-}
-ul {
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 30vh;
-}
-li {
-  display: flex;
-  border-bottom: 1px solid;
-  p {
-    font-size: 20px;
-    text-align: center;
-    width: 30vw;
-    height: 4vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .name {
-    text-align: left;
-  }
-}
-</style>
-
 <template>
   <div>
     <div class="container">
       <Bar v-if="deadAndAlive" :chart-data="deadAndAlive[0].chartData" />
     </div>
-    <div v-if="gameData">
+    <div v-if="gameData" class="navOffset">
       <ul>
         <li v-for="player in gameData.players" :key="player.id">
           <p class="name">{{ player.alias }}</p>
@@ -75,3 +48,30 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.container {
+  padding: 1em;
+  height: 50vh;
+}
+ul {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 30vh;
+}
+li {
+  display: flex;
+  border-bottom: 1px solid;
+  p {
+    font-size: 20px;
+    text-align: center;
+    width: 30vw;
+    height: 4vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .name {
+    text-align: left;
+  }
+}
+</style>

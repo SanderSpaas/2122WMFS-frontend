@@ -1,62 +1,3 @@
-<style scoped lang="scss">
-* {
-  color: white;
-}
-.info {
-  background-color: #da2f2f;
-}
-p {
-  text-align: center;
-  font-size: 17px;
-}
-.infoBox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px 5px 5px 5px;
-  background-color: rgb(47, 206, 216);
-  width: 50vw;
-  height: 5vh;
-}
-button {
-  width: 50vw;
-  height: 5vh;
-  font-size: 17px;
-}
-img {
-  /* width: 100%; */
-  height: auto;
-  width: 50vw;
-}
-@media only screen and (min-width: 768px) {
-  img {
-    width: 20vw;
-  }
-  button {
-    width: 20vw;
-  }
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  /* background-color: rgb(42, 23, 191); */
-  align-items: center;
-  justify-content: space-evenly;
-  height: 70vh;
-}
-.items {
-  display: flex;
-  flex-direction: column;
-  /* background-color: purple; */
-  align-items: center;
-  justify-content: space-evenly;
-  height: 20vh;
-}
-.left {
-  align-self: flex-start;
-}
-</style>
-
 <template>
   <div>
     <MoleculeHeader titel="Game view" />
@@ -137,3 +78,63 @@ export default {
   },
 };
 </script>
+<style scoped lang="scss">
+@import "../../assets/common.scss";
+* {
+  color: white;
+}
+.info {
+  background-color: #da2f2f;
+}
+p {
+  text-align: center;
+  font-size: 17px;
+}
+.infoBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px 5px 5px 5px;
+  background-color: rgb(47, 206, 216);
+  background-color: $color-gray;
+  width: 50vw;
+  height: 5vh;
+}
+button {
+  width: 50vw;
+  height: 5vh;
+  font-size: 17px;
+}
+// img {
+//   /* width: 100%; */
+//   height: auto;
+//   width: 50vw;
+// }
+@media only screen and (min-width: 768px) {
+  img {
+    width: 20vw;
+  }
+  button {
+    width: 20vw;
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  /* background-color: rgb(42, 23, 191); */
+  align-items: center;
+  justify-content: space-evenly;
+  height: 70vh;
+}
+.items {
+  display: flex;
+  flex-direction: column;
+  /* background-color: purple; */
+  align-items: center;
+  justify-content: space-evenly;
+  height: 20vh;
+}
+.left {
+  align-self: flex-start;
+}
+</style>

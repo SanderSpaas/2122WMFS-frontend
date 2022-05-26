@@ -38,8 +38,15 @@
 .tooltip:hover .tooltiptext {
   opacity: 1;
 } */
+$color-orange: rgb(181, 68, 63);
+$color-red:rgb(130, 51, 62);
+$color-blue: rgb(179, 194, 242);
+$color-gray: rgb(57, 87, 86);
+$color-purple: rgb(137, 55, 83);
 body {
   background-color: #25143e;
+  // background-color: rgb(70, 40, 114);
+  background-color: rgb(50, 27, 85);
 }
 /* make a button transparent */
 .clear {
@@ -152,11 +159,7 @@ h1 {
   color: #42b983;
   font-weight: bold;
 }
-$color-orange: rgb(181, 68, 63);
-$color-red:rgb(130, 51, 62);
-$color-blue: rgb(179, 194, 242);
-$color-gray: rgb(57, 87, 86);
-$color-purple: rgb(103, 41, 62);
+
 .yellow {
   background-color: rgb(238, 188, 123);
 }

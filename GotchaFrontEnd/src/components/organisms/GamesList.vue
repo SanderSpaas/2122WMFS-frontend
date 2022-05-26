@@ -58,10 +58,11 @@ li {
   padding: 1em;
   margin: 1em;
   color: rgb(0, 0, 0);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   * {
     font-size: 20px;
     width: 30vw;
-    height: 4vh;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
