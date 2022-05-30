@@ -87,29 +87,4 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-.container {
-  padding: 1em;
-}
-ul {
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 30vh;
-}
-li {
-  display: flex;
-  border-bottom: 1px solid;
-  p {
-    font-size: 20px;
-    text-align: center;
-    width: 30vw;
-    height: 4vh;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .name {
-    text-align: left;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

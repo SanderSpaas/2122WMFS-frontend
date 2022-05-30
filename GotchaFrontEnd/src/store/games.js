@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "../router";
 export default {
   namespaced: true,
   state() {
@@ -170,14 +171,16 @@ export default {
       console.log("adding player");
       commit("loading", true);
       try {
-        const { response } = await axios.post(
-          "http://localhost:8080/api/games/" + gameId + "/add",
-          {
-            alias: alias,
-          }
-        );
+        await axios.post("http://localhost:8080/api/games/" + gameId + "/add", {
+          alias: alias,
+        });
         commit("loading", false);
-        console.log(response);
+        router.push({
+          name: "game",
+          params: {
+            gameId: gameId,
+          },
+        });
       } catch (e) {
         console.log(e);
         commit("loading", false);

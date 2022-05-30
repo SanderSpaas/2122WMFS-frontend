@@ -20,6 +20,6 @@ export default {
   li {
     list-style: none;
   }
-  width: 70vw;
+  width: 60vw;
 }
 </style>

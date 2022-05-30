@@ -69,7 +69,6 @@ export default {
     async submit() {
       this.submitted = true;
       if (this.passwordError === null && this.emailError === null) {
-        console.log("I have submitted");
         try {
           this.errors = await store.dispatch("auth/login", {
             email: this.email,

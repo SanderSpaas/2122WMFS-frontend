@@ -90,6 +90,21 @@ p {
   text-align: center;
   font-size: 17px;
 }
+
+img {
+  /* width: 100%; */
+  height: auto;
+  width: 50vw;
+}
+@media only screen and (min-width: 768px) {
+  img {
+    width: 20em !important;
+  }
+  button {
+    width: 20vw;
+  }
+}
+
 .infoBox {
   display: flex;
   justify-content: center;
@@ -98,25 +113,12 @@ p {
   background-color: rgb(47, 206, 216);
   background-color: $color-gray;
   width: 50vw;
-  height: 5vh;
+  min-height: 5vh;
 }
 button {
   width: 50vw;
   height: 5vh;
   font-size: 17px;
-}
-// img {
-//   /* width: 100%; */
-//   height: auto;
-//   width: 50vw;
-// }
-@media only screen and (min-width: 768px) {
-  img {
-    width: 20vw;
-  }
-  button {
-    width: 20vw;
-  }
 }
 .container {
   display: flex;

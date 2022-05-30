@@ -7,7 +7,7 @@ header {
   height: 10vh;
   h1 {
     // color: rgb(159, 159, 159);
-    font-size: 2.2em;
+    // font-size: 2.2em;
     font-family: HACKED;
     // background: -webkit-linear-gradient($color-red, $color-orange);
     // -webkit-background-clip: text;
@@ -33,9 +33,7 @@ header {
           height="6vh"
           :inline="true" /></AtomButton
     ></router-link>
-
     <h1>{{ titel }}</h1>
-
     <AtomButton class="clear"
       ><Icon
         icon="carbon:logout"

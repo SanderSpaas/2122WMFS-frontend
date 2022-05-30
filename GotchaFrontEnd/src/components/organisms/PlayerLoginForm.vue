@@ -45,21 +45,10 @@ export default {
     async submit() {
       this.submitted = true;
       if (this.aliasError === null) {
-        console.log("I have submitted");
-        try {
-          (this.errors = await store.dispatch("games/addPlayer", {
-            alias: this.alias,
-            gameId: this.$route.params.gameId,
-          })),
-            () => {
-              this.$router.push({
-                name: "chat",
-                params: { gameId: this.$route.params.gameId },
-              });
-            };
-        } catch (e) {
-          console.log(e.response.data.message);
-        }
+        this.errors = await store.dispatch("games/addPlayer", {
+          alias: this.alias,
+          gameId: this.$route.params.gameId,
+        });
       } else {
         console.log("name not filled in");
       }
@@ -68,7 +57,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-// @import "../../assets/common.scss";
 @import "../../assets/common.scss";
 @import "../../assets/login.scss";
 </style>

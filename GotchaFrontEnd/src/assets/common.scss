@@ -1,46 +1,6 @@
-/* body {
-  background-color: white;
-}
-*{
-    color: #2c3e50;
-} */
-
-/* .tooltip {
-  
-  position: absolute;
-  left: 50%;
-  width: 120px;
-  bottom: 100%;
-   margin-left: -60px; 
-}.tooltiptext{
-  position: relative;
-  left: 50%;
-  width: 120px;
-  bottom: 100%;
-  
-  margin-left: -60px;
-}
-.tooltip .tooltiptext::after {
-  position: absolute;
-  content: " ";
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: black transparent transparent transparent;
-}
-.tooltip .tooltiptext {
-  opacity: 0;
-  transition: opacity 1s;
-}
-
-.tooltip:hover .tooltiptext {
-  opacity: 1;
-} */
 $color-orange: rgb(181, 68, 63);
 $color-red:rgb(130, 51, 62);
-$color-blue: rgb(179, 194, 242);
+$color-blue: rgb(2, 37, 95);
 $color-gray: rgb(57, 87, 86);
 $color-purple: rgb(137, 55, 83);
 body {
@@ -151,14 +111,6 @@ h1 {
   width: 100%;
   height: auto;
 }
-.active {
-  color: #42b983;
-}
-
-.exact-active-link {
-  color: #42b983;
-  font-weight: bold;
-}
 
 .yellow {
   background-color: rgb(238, 188, 123);
@@ -170,7 +122,7 @@ h1 {
   background-color: rgb(58, 183,   85);
 }
 .pink {
-  background-color: rgb(183, 58, 95);
+  background-color: rgb(159, 76, 105);
 }
 .orange {
   background-color: $color-orange;

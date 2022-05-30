@@ -2,17 +2,18 @@
   <div>
     <MoleculeHeader titel="Games history" />
     <GamesList :data="data" :history="true" />
-    <!-- <MoleculeNavigation /> -->
   </div>
 </template>
 
 <script>
+import MoleculeHeader from "../molecules/MoleculeHeader.vue";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
 import GamesList from "../organisms/GamesList.vue";
 export default {
   components: {
     GamesList,
+    MoleculeHeader,
   },
   computed: {
     ...mapGetters({

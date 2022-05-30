@@ -51,7 +51,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   padding: 1em;
-  height: 50vh;
+  height: 60vh;
 }
 ul {
   overflow-x: hidden;

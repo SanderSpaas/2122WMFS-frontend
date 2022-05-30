@@ -48,8 +48,9 @@ export default {
 @import "../../assets/common.scss";
 ul {
   padding: 1em;
-  width: 100%;
-  text-align: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 90vh;
 }
 li {
   display: flex;
