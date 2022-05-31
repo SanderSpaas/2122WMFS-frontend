@@ -22,6 +22,7 @@
 <script>
 import store from "../../store";
 import AtomButton from "../atoms/AtomButton.vue";
+import { mapActions } from "vuex";
 export default {
   components: { AtomButton },
   props: ["gameData"],
@@ -29,11 +30,18 @@ export default {
     console.log(this.$store._actions);
   },
   methods: {
-    killPlayer(gameId, targetID) {
-      store.dispatch("games/killPlayer", {
-        gameId: gameId,
-        targetID: targetID,
-      });
+    ...mapActions("games", {
+      Game: "Game",
+    }),
+    async killPlayer(gameId, targetID) {
+      await store
+        .dispatch("games/killPlayer", {
+          gameId: gameId,
+          targetID: targetID,
+        })
+        .then(() => {
+          this.Game(this.$route.params.gameId);
+        });
     },
   },
 };
