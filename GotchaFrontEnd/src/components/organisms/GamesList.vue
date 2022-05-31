@@ -1,29 +1,42 @@
 <template>
   <ul>
-    <li v-for="game in data" :key="game.id">
-      <p class="people">{{ game.players.length }}👤</p>
-      <p class="name">{{ game.name }}</p>
-      <router-link
-        v-if="history"
-        class="green"
-        :to="{ name: 'historyDetail', params: { gameId: game.id } }"
-      >
-        See info</router-link
-      >
-      <router-link
-        v-if="joinOrContinue(game.players, user) && !history"
-        class="green"
-        :to="{ name: 'game', params: { gameId: game.id } }"
-        >Resume</router-link
-      >
-      <router-link
-        v-else-if="game.status === 'Open' && !history"
-        class="lightblue"
-        :to="{ name: 'player', params: { gameId: game.id } }"
-        >Join</router-link
-      >
-      <p v-else-if="!history" class="pink closed">Closed</p>
-    </li>
+    <span v-for="game in data" :key="game.id">
+      <li v-if="game.status !== 'Finished' && !history">
+        <p class="people">{{ game.players.length }}👤</p>
+        <p class="name">{{ game.name }}</p>
+        <router-link
+          v-if="history"
+          class="green"
+          :to="{ name: 'historyDetail', params: { gameId: game.id } }"
+        >
+          See info</router-link
+        >
+        <router-link
+          v-if="joinOrContinue(game.players, user) && !history"
+          class="green"
+          :to="{ name: 'game', params: { gameId: game.id } }"
+          >Resume</router-link
+        >
+        <router-link
+          v-else-if="game.status === 'Open' && !history"
+          class="lightblue"
+          :to="{ name: 'player', params: { gameId: game.id } }"
+          >Join</router-link
+        >
+        <p v-else-if="!history" class="pink closed">Closed</p>
+      </li>
+      <li v-if="game.status === 'Finished' && history">
+        <p class="people">{{ game.players.length }}👤</p>
+        <p class="name">{{ game.name }}</p>
+        <router-link
+          v-if="history"
+          class="green"
+          :to="{ name: 'historyDetail', params: { gameId: game.id } }"
+        >
+          See info</router-link
+        >
+      </li>
+    </span>
   </ul>
 </template>
 

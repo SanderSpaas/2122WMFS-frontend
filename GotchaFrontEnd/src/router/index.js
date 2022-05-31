@@ -10,6 +10,7 @@ import Game from "../components/templates/GameView.vue";
 import Chat from "../components/templates/ChatView.vue";
 import History from "../components/templates/HistoryView.vue";
 import Gamelist from "../components/templates/GamesView.vue";
+import PlayerView from "../components/templates/PlayerView.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -69,6 +70,14 @@ const router = createRouter({
       component: Chat,
       meta: {
         title: "Chat page",
+      },
+    },
+    {
+      path: "/game/:gameId/players",
+      name: "players",
+      component: PlayerView,
+      meta: {
+        title: "Player view page",
       },
     },
     {

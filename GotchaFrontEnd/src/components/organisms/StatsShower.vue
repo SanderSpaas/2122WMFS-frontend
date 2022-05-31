@@ -3,7 +3,7 @@
     <div class="container">
       <Bar v-if="deadAndAlive" :chart-data="deadAndAlive[0].chartData" />
     </div>
-    <div v-if="gameData" class="navOffset">
+    <div v-if="gameData">
       <ul>
         <li v-for="player in gameData.players" :key="player.id">
           <p class="name">{{ player.alias }}</p>
@@ -17,8 +17,6 @@
 </template>
 
 <script>
-// import { mapGetters } from "vuex";
-// import { mapActions } from "vuex";
 import { Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
@@ -49,14 +47,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "../../assets/common.scss";
 .container {
   padding: 1em;
-  height: 60vh;
+  // height: 60vh;
 }
 ul {
   overflow-x: hidden;
   overflow-y: auto;
   height: 30vh;
+  margin-bottom: 10vh;
 }
 li {
   display: flex;

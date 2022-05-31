@@ -1,24 +1,20 @@
 <template>
   <div>
-    <MoleculeHeader titel="Statistics" />
-    <StatsShower :gameData="gameData" :deadAndAlive="deadAndAlive" />
+    <MoleculeHeader titel="Player view" />
+    <PlayerList :gameData="gameData" />
     <MoleculeNavigation />
   </div>
 </template>
 
 <script>
-import StatsShower from "../organisms/StatsShower.vue";
-import MoleculeNavigation from "../molecules/MoleculeNavigation.vue";
 import MoleculeHeader from "../molecules/MoleculeHeader.vue";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
+import PlayerList from "../organisms/PlayerList.vue";
+import MoleculeNavigation from "../molecules/MoleculeNavigation.vue";
 
 export default {
-  name: "BarChart",
-  data: () => ({
-    deadAndAlive: null,
-  }),
-  components: { MoleculeNavigation, MoleculeHeader, StatsShower },
+  components: { MoleculeHeader, PlayerList, MoleculeNavigation },
   computed: {
     ...mapGetters({
       gameData: "games/getGame",

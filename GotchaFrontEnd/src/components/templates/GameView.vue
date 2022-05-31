@@ -22,7 +22,7 @@
         <p v-if="targetData" class="infoBox">{{ player.game.murder_method }}</p>
         <AtomButton
           v-if="!player.dead && targetData"
-          @click="killPlayer"
+          @click="killPlayer(player.game.id, player.id)"
           class="info"
           >I Died</AtomButton
         >
@@ -45,6 +45,7 @@
 import MoleculeNavigation from "../molecules/MoleculeNavigation.vue";
 import MoleculeHeader from "../molecules/MoleculeHeader.vue";
 import AtomButton from "../atoms/AtomButton.vue";
+import store from "../../store";
 import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
 export default {
@@ -63,10 +64,15 @@ export default {
     ...mapActions({
       UserFromGame: "games/UserFromGame",
       start: "games/start",
-      killPlayer: "games/killPlayer",
       Target: "games/Target",
       Killer: "games/Killer",
     }),
+    killPlayer(gameId, targetID) {
+      store.dispatch("games/killPlayer", {
+        gameId: gameId,
+        targetID: targetID,
+      });
+    },
   },
   created() {
     console.log(this.$store._actions);

@@ -153,11 +153,13 @@ export default {
         commit("loading", false);
       }
     },
-    async killPlayer({ commit, dispatch }) {
+    async killPlayer({ commit, dispatch }, { gameId, targetID }) {
       console.log("Killing player");
       commit("loading", true);
       try {
-        const { data } = await axios.post("http://localhost:8080/api/player");
+        const { data } = await axios.post(
+          "http://localhost:8080/api/player/" + gameId + "/" + targetID
+        );
         commit("loading", false);
         console.log(data);
         dispatch("UserFromGame");

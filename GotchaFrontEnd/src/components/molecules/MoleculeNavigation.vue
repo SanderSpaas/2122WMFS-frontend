@@ -30,8 +30,11 @@
           height="6vh"
           :inline="true" /></AtomButton
     ></router-link>
-    <router-link :to="{ name: 'history' }">
-      <AtomButton class="pink" v-if="user.role === 'spelbegeleider'"
+    <router-link
+      v-if="user.role === 'spelbegeleider'"
+      :to="{ name: 'players' }"
+    >
+      <AtomButton class="pink"
         ><Icon
           icon="akar-icons:person"
           color="#f2f2f2"
@@ -65,6 +68,7 @@ button {
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.4)) top/100% 800%;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  width: 100%;
 }
 button:hover {
   background-position: bottom;
