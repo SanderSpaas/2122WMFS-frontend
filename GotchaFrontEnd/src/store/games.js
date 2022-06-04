@@ -74,9 +74,10 @@ export default {
         commit("loading", false);
       }
     },
-    //info over de huige speler gaan opvragen
+    //info over de game met alle spelers
     async Game({ commit }, gameId) {
       console.log("trying to get game info with id: " + gameId);
+      commit("game", null);
       commit("loading", true);
       try {
         const { data } = await axios.get(
@@ -210,14 +211,13 @@ export default {
       console.log("sending chat");
       commit("loading", true);
       try {
-        const { response } = await axios.post(
+        await axios.post(
           "http://localhost:8080/api/games/" + gameId + "/chat",
           {
             message: message,
           }
         );
         commit("loading", false);
-        console.log(response);
         //nu de messages opnieuw gaan ophalen zodat we kunnnen zien wat we verstuurd hebben
         dispatch("Chat", gameId);
       } catch (e) {

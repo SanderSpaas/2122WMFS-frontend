@@ -1,6 +1,9 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory
+} from "vue-router";
 import store from "../store";
-import Home from "../components/templates/HomeView.vue";
+// import Home from "../components/templates/HomeView.vue";
 import Login from "../components/templates/LoginView.vue";
 import Register from "../components/templates/RegisterView.vue";
 import Player from "../components/templates/PlayerLoginView.vue";
@@ -12,10 +15,19 @@ import History from "../components/templates/HistoryView.vue";
 import Gamelist from "../components/templates/GamesView.vue";
 import PlayerView from "../components/templates/PlayerView.vue";
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(
+    import.meta.env.BASE_URL),
   routes: [
     // reduce bundle size with lazy loaded routes!
     //paginas alleen lazy loaden als ze weinig gebruikt worden
+    {
+      path: "/",
+      name: "loginRoot",
+      component: Login,
+      meta: {
+        title: "Login page",
+      },
+    },
     {
       path: "/login",
       name: "login",
@@ -46,14 +58,6 @@ const router = createRouter({
       component: Stats,
       meta: {
         title: "Statistics page",
-      },
-    },
-    {
-      path: "/home",
-      name: "home",
-      component: Home,
-      meta: {
-        title: "Home page",
       },
     },
     {
@@ -104,21 +108,11 @@ const router = createRouter({
         title: "Game list page",
       },
     },
-    //alle urls die em niet kent naar de homepage sturen
+    // alle urls die em niet kent naar de homepage sturen
     // {
     //   path: "/:catchAll(.*)",
     //   redirect: { path: "/" },
     // },
-    {
-      path: "/admin",
-      name: "admin",
-      component: () => import("../components/templates/AdminView.vue"),
-      meta: {
-        requiresAuth: true,
-        role: "admin",
-        title: "Admin page",
-      },
-    },
   ],
 });
 //navigation guards gaan toevoegen
@@ -126,14 +120,17 @@ router.beforeEach((to, from, next) => {
   if (to.fullPath !== "/login" && to.fullPath !== "/register") {
     if (!store.getters["auth/isAuthenticated"]) {
       next("/login");
+    } else {
+      next();
     }
   }
   if (to.fullPath === "/login" || to.fullPath === "/register") {
     if (store.getters["auth/isAuthenticated"]) {
       next("/gamelist");
+    } else {
+      next();
     }
   }
-  next();
 });
 
 let initial = true;
@@ -157,7 +154,7 @@ router.afterEach((to) => {
     }
 
     // make sure the h1 can receive focus
-    // I don't trust the other frontender in my team...
+    // I don't trust the other frontender in my team... Which is also me...
     h1.tabIndex = -1;
     h1.focus();
   });

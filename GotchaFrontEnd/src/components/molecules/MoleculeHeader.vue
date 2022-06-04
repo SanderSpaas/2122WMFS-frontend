@@ -58,7 +58,6 @@ export default {
   },
   methods: {
     logout() {
-      console.log(this.$store._actions);
       store.dispatch("auth/logout");
     },
   },

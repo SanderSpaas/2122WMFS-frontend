@@ -63,7 +63,6 @@ export default {
         return null;
       }
     },
-    props: ["password", "email"],
   },
   methods: {
     async submit() {

@@ -39,7 +39,6 @@ export default {
         return null;
       }
     },
-    props: ["alias"],
   },
   methods: {
     async submit() {

@@ -86,7 +86,6 @@ export default {
         return null;
       }
     },
-    props: ["password", "email", "name"],
   },
   methods: {
     async submit() {

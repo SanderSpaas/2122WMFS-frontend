@@ -3,12 +3,6 @@ import store from "./store";
 import { mapGetters } from "vuex";
 
 export default {
-  data() {
-    return {
-      data: null,
-    };
-  },
-  components: {},
   methods: {
     logout() {
       console.log("logging you out bye bye sir");
@@ -51,7 +45,4 @@ a.skiplink {
     top: 0;
   }
 }
-// h2 {
-//   font-family: HACKED;
-// }
 </style>

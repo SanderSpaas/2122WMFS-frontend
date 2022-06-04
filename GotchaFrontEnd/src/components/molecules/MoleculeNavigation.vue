@@ -31,7 +31,7 @@
           :inline="true" /></AtomButton
     ></router-link>
     <router-link
-      v-if="user.role === 'spelbegeleider'"
+      v-if="user.role === 'spelbegeleider' || user.role === 'admin'"
       :to="{ name: 'players' }"
     >
       <AtomButton class="pink"
