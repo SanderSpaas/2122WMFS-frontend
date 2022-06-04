@@ -29,12 +29,6 @@
         <AtomButton v-else-if="player.dead" disabled="true" class="info"
           >You are dead</AtomButton
         >
-        <AtomButton
-          v-if="player.user.role === 'admin'"
-          @click="start"
-          class="info"
-          >Assign targets</AtomButton
-        >
       </div>
     </div>
     <MoleculeNavigation />
@@ -63,7 +57,6 @@ export default {
   methods: {
     ...mapActions({
       UserFromGame: "games/UserFromGame",
-      start: "games/start",
       Target: "games/Target",
       Killer: "games/Killer",
     }),

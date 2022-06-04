@@ -1,14 +1,12 @@
 <template>
-  <main>
-    <div>
-      <img
-        class="responsive"
-        src="../../assets/img/Gotcha.gif"
-        alt="logo van Gotcha"
-      />
-      <LoginForm />
-    </div>
-  </main>
+  <div>
+    <img
+      class="responsive"
+      src="../../assets/img/Gotcha.gif"
+      alt="logo van Gotcha"
+    />
+    <LoginForm />
+  </div>
 </template>
 <script>
 import LoginForm from "../organisms/LoginForm.vue";

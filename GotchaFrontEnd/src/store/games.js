@@ -139,21 +139,6 @@ export default {
         commit("loading", false);
       }
     },
-    //de targets gaan verdelen, alleen mogelijk door admin
-    async start({ commit }) {
-      console.log("trying to hand out some hits");
-      commit("loading", true);
-      try {
-        const { data } = await axios.get(
-          "http://localhost:8080/api/games/1/start"
-        );
-        commit("loading", false);
-        console.log(data);
-      } catch (e) {
-        console.log(e);
-        commit("loading", false);
-      }
-    },
     async killPlayer({ commit, dispatch }, { gameId, targetID }) {
       console.log("Killing player");
       commit("loading", true);

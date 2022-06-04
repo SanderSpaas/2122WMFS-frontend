@@ -5,7 +5,6 @@ import { mapGetters } from "vuex";
 export default {
   methods: {
     logout() {
-      console.log("logging you out bye bye sir");
       store.dispatch("auth/logout");
     },
   },

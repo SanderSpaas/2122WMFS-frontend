@@ -1,7 +1,4 @@
-import {
-  createRouter,
-  createWebHistory
-} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import store from "../store";
 // import Home from "../components/templates/HomeView.vue";
 import Login from "../components/templates/LoginView.vue";
@@ -15,8 +12,7 @@ import History from "../components/templates/HistoryView.vue";
 import Gamelist from "../components/templates/GamesView.vue";
 import PlayerView from "../components/templates/PlayerView.vue";
 const router = createRouter({
-  history: createWebHistory(
-    import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     // reduce bundle size with lazy loaded routes!
     //paginas alleen lazy loaden als ze weinig gebruikt worden

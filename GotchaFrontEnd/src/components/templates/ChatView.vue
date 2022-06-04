@@ -1,106 +1,3 @@
-<style scoped>
-/* talk bubble contents */
-.talktext {
-  padding: 1em;
-  text-align: left;
-  line-height: 1.5em;
-  color: rgb(242, 242, 242);
-}
-/* Right triangle, right side slightly down*/
-.tri-right.border.right-in:before {
-  content: " ";
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: auto;
-  right: -40px;
-  top: 30px;
-  bottom: auto;
-  border: 20px solid;
-  border-color: #666 transparent transparent #666;
-}
-.tri-left.border.left-in:before {
-  content: " ";
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -40px;
-  right: auto;
-  top: 30px;
-  bottom: auto;
-  border: 20px solid;
-  border-color: #666 #666 transparent transparent;
-}
-.tri-left.left-in:after {
-  content: " ";
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -20px;
-  top: 15px;
-  bottom: auto;
-  border: 12px solid;
-  border-color: rgb(42, 157, 202) rgb(42, 157, 202) transparent transparent;
-}
-.tri-right.right-in:after {
-  content: " ";
-  position: absolute;
-  width: 0;
-  height: 0;
-  right: -20px;
-  top: 15px;
-  bottom: auto;
-  border: 12px solid;
-  border-color: rgb(56, 176, 82) transparent transparent rgb(56, 176, 82);
-}
-/* CSS talk bubble */
-.talk-bubble {
-  margin: 40px;
-  max-width: 66vw;
-  height: auto;
-}
-.left {
-  background-color: rgb(42, 157, 202);
-}
-.right {
-  background-color: rgb(56, 176, 82);
-}
-.dead {
-  background-color: #da2f2f;
-}
-.deadRight:after {
-  border-color: #da2f2f transparent transparent #da2f2f !important;
-}
-.deadLeft:after {
-  border-color: #da2f2f #da2f2f transparent transparent !important;
-}
-.round {
-  border-radius: 30px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-}
-li {
-  list-style: none;
-}
-ol {
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 70vh;
-}
-.info {
-  font-size: 13px;
-  color: rgb(191, 191, 191);
-}
-form {
-  display: flex;
-  justify-content: center;
-  height: 10vh;
-  position: fixed;
-  bottom: 10vh;
-  width: 100%;
-}
-</style>
-
 <template>
   <div>
     <MoleculeHeader titel="Game chat" />
@@ -229,3 +126,105 @@ export default {
   },
 };
 </script>
+<style scoped>
+/* talk bubble contents */
+.talktext {
+  padding: 1em;
+  text-align: left;
+  line-height: 1.5em;
+  color: rgb(242, 242, 242);
+}
+/* Right triangle, right side slightly down*/
+.tri-right.border.right-in:before {
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: auto;
+  right: -40px;
+  top: 30px;
+  bottom: auto;
+  border: 20px solid;
+  border-color: #666 transparent transparent #666;
+}
+.tri-left.border.left-in:before {
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -40px;
+  right: auto;
+  top: 30px;
+  bottom: auto;
+  border: 20px solid;
+  border-color: #666 #666 transparent transparent;
+}
+.tri-left.left-in:after {
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -20px;
+  top: 15px;
+  bottom: auto;
+  border: 12px solid;
+  border-color: rgb(42, 157, 202) rgb(42, 157, 202) transparent transparent;
+}
+.tri-right.right-in:after {
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -20px;
+  top: 15px;
+  bottom: auto;
+  border: 12px solid;
+  border-color: rgb(56, 176, 82) transparent transparent rgb(56, 176, 82);
+}
+/* CSS talk bubble */
+.talk-bubble {
+  margin: 40px;
+  max-width: 66vw;
+  height: auto;
+}
+.left {
+  background-color: rgb(42, 157, 202);
+}
+.right {
+  background-color: rgb(56, 176, 82);
+}
+.dead {
+  background-color: #da2f2f;
+}
+.deadRight:after {
+  border-color: #da2f2f transparent transparent #da2f2f !important;
+}
+.deadLeft:after {
+  border-color: #da2f2f #da2f2f transparent transparent !important;
+}
+.round {
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+}
+li {
+  list-style: none;
+}
+ol {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 70vh;
+}
+.info {
+  font-size: 13px;
+  color: rgb(191, 191, 191);
+}
+form {
+  display: flex;
+  justify-content: center;
+  height: 10vh;
+  position: fixed;
+  bottom: 10vh;
+  width: 100%;
+}
+</style>
