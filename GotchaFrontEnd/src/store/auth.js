@@ -49,8 +49,8 @@ export default {
         console.log("Trying to log you in: " + email + " " + password);
         commit("loading", true);
         try {
-          await axios.get("http://localhost:8080/sanctum/csrf-cookie");
-          const { data } = await axios.post("http://localhost:8080/api/login", {
+          await axios.get("/sanctum/csrf-cookie");
+          const { data } = await axios.post("/api/login", {
             email: email,
             password: password,
           });
@@ -78,15 +78,12 @@ export default {
         );
         commit("loading", true);
         try {
-          await axios.get("http://localhost:8080/sanctum/csrf-cookie");
-          const { data } = await axios.post(
-            "http://localhost:8080/api/user/add",
-            {
-              name: name,
-              email: email,
-              password: password,
-            }
-          );
+          await axios.get("/sanctum/csrf-cookie");
+          const { data } = await axios.post("/api/user/add", {
+            name: name,
+            email: email,
+            password: password,
+          });
           commit("loading", false);
           console.log(data);
           router.push({
@@ -111,7 +108,7 @@ export default {
       // I don't care about the response
       // but it resets the cookie... so... yeah;
       return axios
-        .post("http://localhost:8080/api/logout")
+        .post("/api/logout")
         .catch(() => {
           commit("loading", false);
         })
@@ -139,7 +136,7 @@ export default {
       commit("loading", true);
       console.log("trying to get user info");
       try {
-        const { data } = await axios.get("http://localhost:8080/api/user");
+        const { data } = await axios.get("/api/user");
         commit("loading", false);
         console.log(data);
         commit("login", true);
