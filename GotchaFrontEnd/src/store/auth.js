@@ -120,7 +120,9 @@ export default {
           document.cookie =
             "XSRF-TOKEN=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC; Secure;";
           commit("loading", false);
-          router.push("/login");
+          router.push({
+            name: "login",
+          });
         });
     },
     async tryAutoLogin({ dispatch }) {

@@ -7,10 +7,7 @@ export default {
       games: null,
       game: null,
       loading: false,
-      // user: null,
-      // target: null,
       chat: null,
-      // killer: null,
     };
   },
   getters: {
@@ -23,18 +20,9 @@ export default {
     isLoading(state) {
       return state.loading;
     },
-    // getUserFromGame(state) {
-    //   return state.user;
-    // },
     getChat(state) {
       return state.chat;
     },
-    // getTarget(state) {
-    //   return state.target;
-    // },
-    // getKiller(state) {
-    //   return state.killer;
-    // },
   },
   mutations: {
     games(state, data) {
@@ -43,21 +31,12 @@ export default {
     game(state, data) {
       state.game = data;
     },
-    // userFromGame(state, data) {
-    //   state.user = data;
-    // },
     loading(state, loading) {
       state.loading = loading;
     },
     chat(state, chat) {
       state.chat = chat;
     },
-    // target(state, target) {
-    //   state.target = target;
-    // },
-    // killer(state, killer) {
-    //   state.killer = killer;
-    // },
   },
   actions: {
     //geeft alle games weer
@@ -87,70 +66,27 @@ export default {
         console.log(data);
         commit("game", data.data);
       } catch (e) {
-        console.log(e);
+        //game bestaat niet dus user gaan weghalen van de pagina
+        router.push({
+          name: "gamelist",
+        });
         commit("loading", false);
       }
     },
-    //info over de huige speler gaan opvragen
-    // async UserFromGame({ commit }, gameId) {
-    //   console.log("trying to get user info with id: " + gameId);
-    //   commit("loading", true);
-    //   try {
-    //     const { data } = await axios.get(
-    //       "http://localhost:8080/api/games/" + gameId + "/player"
-    //     );
-    //     commit("loading", false);
-    //     console.log(data.data);
-    //     commit("userFromGame", data.data);
-    //   } catch (e) {
-    //     console.log(e);
-    //     commit("loading", false);
-    //   }
-    // },
-    //info over het target van de huidige speler gaan opvragen
-    // async Target({ commit }, gameId) {
-    //   console.log("trying to get target info with id: " + gameId);
-    //   commit("loading", true);
-    //   try {
-    //     const { data } = await axios.get(
-    //       "http://localhost:8080/api/games/" + gameId + "/target"
-    //     );
-    //     commit("loading", false);
-    //     console.log(data);
-    //     commit("target", data.data);
-    //   } catch (e) {
-    //     console.log(e);
-    //     commit("loading", false);
-    //   }
-    // },
-    //info over het target van de huidige speler gaan opvragen
-    // async Killer({ commit }, gameId) {
-    //   console.log("trying to get killer info");
-    //   commit("loading", true);
-    //   try {
-    //     const { data } = await axios.get(
-    //       "http://localhost:8080/api/games/" + gameId + "/killer"
-    //     );
-    //     commit("loading", false);
-    //     console.log(data);
-    //     commit("killer", data.data);
-    //   } catch (e) {
-    //     console.log(e);
-    //     commit("loading", false);
-    //   }
-    // },
     async killPlayer({ commit, dispatch }, { gameId, targetID }) {
       console.log("Killing player");
       commit("loading", true);
       try {
-        const { data } = await axios.post(
+        const { data } = await axios.patch(
           "http://localhost:8080/api/player/" + gameId + "/" + targetID
         );
         commit("loading", false);
         console.log(data);
-        dispatch("UserFromGame");
+        dispatch("Game", gameId);
       } catch (e) {
-        console.log(e);
+        router.push({
+          name: "gamelist",
+        });
         commit("loading", false);
       }
     },
@@ -188,6 +124,9 @@ export default {
         console.log(data.data);
       } catch (e) {
         console.log(e);
+        router.push({
+          name: "gamelist",
+        });
         commit("loading", false);
       }
     },
@@ -207,6 +146,9 @@ export default {
         dispatch("Chat", gameId);
       } catch (e) {
         console.log(e);
+        router.push({
+          name: "gamelist",
+        });
         commit("loading", false);
       }
     },

@@ -29,7 +29,7 @@ const router = createRouter({
       name: "login",
       component: Login,
       meta: {
-        title: "Login page",
+        title: "Login",
       },
     },
     {
@@ -37,7 +37,7 @@ const router = createRouter({
       name: "register",
       component: Register,
       meta: {
-        title: "Register page",
+        title: "Register",
       },
     },
     {
@@ -45,7 +45,7 @@ const router = createRouter({
       name: "player",
       component: Player,
       meta: {
-        title: "Add player page",
+        title: "Add player",
       },
     },
     {
@@ -53,7 +53,7 @@ const router = createRouter({
       name: "stats",
       component: Stats,
       meta: {
-        title: "Statistics page",
+        title: "Statistics",
       },
     },
     {
@@ -61,7 +61,7 @@ const router = createRouter({
       name: "game",
       component: Game,
       meta: {
-        title: "Game page",
+        title: "Game view",
       },
     },
     {
@@ -69,7 +69,7 @@ const router = createRouter({
       name: "chat",
       component: Chat,
       meta: {
-        title: "Chat page",
+        title: "Chat",
       },
     },
     {
@@ -77,7 +77,7 @@ const router = createRouter({
       name: "players",
       component: PlayerView,
       meta: {
-        title: "Player view page",
+        title: "Player view",
       },
     },
     {
@@ -85,7 +85,7 @@ const router = createRouter({
       name: "history",
       component: History,
       meta: {
-        title: "History page",
+        title: "History",
       },
     },
     {
@@ -101,7 +101,7 @@ const router = createRouter({
       name: "gamelist",
       component: Gamelist,
       meta: {
-        title: "Game list page",
+        title: "Game list",
       },
     },
     // alle urls die em niet kent naar de homepage sturen

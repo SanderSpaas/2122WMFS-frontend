@@ -11,6 +11,7 @@
       <div v-for="player in gameData.players" :key="player.id">
         <div v-if="user.id === player.user.id && gameData.status === 'Started'">
           <p v-if="player.target_id">
+            Target:
             {{ gameData.players[player.target_id].user.name }} alias:
             {{ gameData.players[player.target_id].alias }}
           </p>
@@ -21,7 +22,7 @@
             {{ gameData.players[player.killer_id].alias }}
           </p>
           <div class="items">
-            <p class="left">Murder method:</p>
+            <p class="left">Murder method</p>
             <p class="infoBox">
               {{ gameData.murder_method }}
             </p>
@@ -112,7 +113,6 @@ img {
   justify-content: center;
   align-items: center;
   border-radius: 5px 5px 5px 5px;
-  background-color: rgb(47, 206, 216);
   background-color: $color-gray;
   width: 50vw;
   min-height: 5vh;
@@ -137,8 +137,5 @@ button {
   align-items: center;
   justify-content: space-evenly;
   height: 20vh;
-}
-.left {
-  align-self: flex-start;
 }
 </style>

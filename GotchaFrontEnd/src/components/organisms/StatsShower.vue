@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex">
     <div class="container">
       <Bar v-if="deadAndAlive" :chart-data="deadAndAlive[0].chartData" />
     </div>
@@ -48,9 +48,20 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../../assets/common.scss";
-.container {
-  padding: 1em;
-  // height: 60vh;
+@media only screen and (min-width: 768px) {
+  .flex {
+    display: flex;
+    align-items:center;
+    div {
+      width: 50vw;
+    }
+    ul {
+      height: auto;
+    }
+    .container {
+      margin-bottom: 10vh;
+    }
+  }
 }
 ul {
   overflow-x: hidden;
