@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <img
       class="responsive"
       src="../../assets/img/Gotcha.gif"
@@ -12,19 +12,25 @@
 <script>
 import RegisterForm from "../organisms/RegisterForm.vue";
 export default {
-  // data() {
-  //   return {
-  //     data: null,
-  //   };
-  // },
   components: { RegisterForm },
   methods: {},
 };
 </script>
 
 <style scoped lang="scss">
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100vh;
+}
 img {
-  padding-left: 4em;
-  padding-right: 4em;
+  width: 75vw;
+}
+@media only screen and (min-width: 768px) {
+  img {
+    width: 20em !important;
+  }
 }
 </style>

@@ -1,12 +1,14 @@
 <template>
   <div>
     <MoleculeHeader titel="Add a player" />
-    <img
-      class="responsive"
-      src="../../assets/img/Gotcha.gif"
-      alt="logo van Gotcha"
-    />
-    <PlayerLoginForm />
+    <div class="container">
+      <img
+        class="responsive"
+        src="../../assets/img/Gotcha.gif"
+        alt="logo van Gotcha"
+      />
+      <PlayerLoginForm />
+    </div>
   </div>
 </template>
 <script>
@@ -18,9 +20,20 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 90vh;
+}
 img {
-  padding-left: 4em;
-  padding-right: 4em;
+  width: 75vw;
+}
+@media only screen and (min-width: 768px) {
+  img {
+    width: 20em !important;
+  }
 }
 </style>

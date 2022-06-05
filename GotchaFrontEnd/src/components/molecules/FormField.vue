@@ -4,6 +4,12 @@ input {
   padding: 5px;
   width: 50vw;
 }
+@media only screen and (min-width: 768px) {
+  input {
+    width: 30vw;
+  }
+}
+
 .form-field {
   display: flex;
   flex-direction: column;

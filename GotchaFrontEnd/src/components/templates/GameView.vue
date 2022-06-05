@@ -1,34 +1,44 @@
 <template>
   <div>
     <MoleculeHeader titel="Game view" />
-    <div class="container" v-if="player">
-      <h2>{{ player.game.name }}</h2>
+    <div class="container" v-if="gameData">
+      <h2>{{ gameData.name }}</h2>
       <img
         class="responsive"
         src="../../assets/img/Gotcha.gif"
         alt="logo van Gotcha"
       />
-      <p v-if="targetData">
-        {{ targetData.user.name }} alias: {{ targetData.alias }}
-      </p>
-      <p v-else-if="player.dead">
-        You are dead, suck less next time.<br />
-        ¯\_(ツ)_/¯<br />Your killer: {{ killerData.user.name }} alias:
-        {{ killerData.alias }}
-      </p>
-      <p v-else>The game hasn't started yet. <br />(⌐■_■)</p>
-      <div class="items">
-        <p v-if="targetData" class="left">Murder method:</p>
-        <p v-if="targetData" class="infoBox">{{ player.game.murder_method }}</p>
-        <AtomButton
-          v-if="!player.dead && targetData"
-          @click="killPlayer(player.game.id, player.id)"
-          class="info"
-          >I Died</AtomButton
-        >
-        <AtomButton v-else-if="player.dead" disabled="true" class="info"
-          >You are dead</AtomButton
-        >
+      <div v-for="player in gameData.players" :key="player.id">
+        <div v-if="user.id === player.user.id && gameData.status === 'Started'">
+          <p v-if="player.target_id">
+            {{ gameData.players[player.target_id].user.name }} alias:
+            {{ gameData.players[player.target_id].alias }}
+          </p>
+          <p v-else>
+            You are dead, suck less next time.<br />
+            ¯\_(ツ)_/¯<br />Your killer:
+            {{ gameData.players[player.killer_id].user.name }} alias:
+            {{ gameData.players[player.killer_id].alias }}
+          </p>
+          <div class="items">
+            <p class="left">Murder method:</p>
+            <p class="infoBox">
+              {{ gameData.murder_method }}
+            </p>
+            <AtomButton
+              v-if="!player.dead"
+              @click="killPlayer(gameData.id, player.id)"
+              class="info"
+              >I Died</AtomButton
+            >
+            <AtomButton v-else disabled="true" class="info"
+              >You are dead</AtomButton
+            >
+          </div>
+        </div>
+        <p v-else-if="user.id === player.user.id">
+          The game hasn't started yet. <br />(⌐■_■)
+        </p>
       </div>
     </div>
     <MoleculeNavigation />
@@ -49,16 +59,12 @@ export default {
       loggedIn: "auth/isLoggedin",
       authenticated: "auth/isAuthenticated",
       user: "auth/user",
-      player: "games/getUserFromGame",
-      targetData: "games/getTarget",
-      killerData: "games/getKiller",
+      gameData: "games/getGame",
     }),
   },
   methods: {
     ...mapActions({
-      UserFromGame: "games/UserFromGame",
-      Target: "games/Target",
-      Killer: "games/Killer",
+      Game: "games/Game",
     }),
     killPlayer(gameId, targetID) {
       store.dispatch("games/killPlayer", {
@@ -71,9 +77,7 @@ export default {
     console.log(this.$store._actions);
   },
   mounted() {
-    this.UserFromGame(this.$route.params.gameId);
-    this.Target(this.$route.params.gameId);
-    this.Killer(this.$route.params.gameId);
+    this.Game(this.$route.params.gameId);
   },
 };
 </script>
@@ -91,9 +95,8 @@ p {
 }
 
 img {
-  /* width: 100%; */
   height: auto;
-  width: 50vw;
+  width: 50vw !important;
 }
 @media only screen and (min-width: 768px) {
   img {
