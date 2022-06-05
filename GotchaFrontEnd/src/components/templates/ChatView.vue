@@ -9,7 +9,13 @@
           :class="[chatMessage.player.dead ? ['deadRight', 'dead'] : '']"
         >
           <div class="talktext">
-            <p>{{ chatMessage.message }}</p>
+            <p>
+              <Icon
+                icon="akar-icons:trash-can"
+                :inline="true"
+                @click="removeChat(chatMessage.id)"
+              />{{ chatMessage.message }}
+            </p>
           </div>
         </div>
         <div
@@ -19,7 +25,11 @@
         >
           <div class="talktext">
             <p>
-              {{ chatMessage.message }}
+              <Icon
+                icon="akar-icons:trash-can"
+                :inline="true"
+                @click="removeChat(chatMessage.id)"
+              />{{ chatMessage.message }}
             </p>
           </div>
         </div>
@@ -103,7 +113,12 @@ export default {
       Chat: "Chat",
       addChat: "addChat",
     }),
-
+    removeChat(chatId) {
+      store.dispatch("games/removeChat", {
+        gameId: this.$route.params.gameId,
+        chatId: chatId,
+      });
+    },
     sendChat() {
       console.log(this.message);
       store.dispatch("games/addChat", {
@@ -113,21 +128,21 @@ export default {
       //message veld gaan leegmaken
       this.message = "";
     },
-    // isDisabled(message) {
-    //   return message !== true;
-    // },
   },
   created() {
     console.log(this.$store._actions);
   },
   mounted() {
-    // this.UserFromGame(this.$route.params.gameId);
     this.Chat(this.$route.params.gameId);
   },
 };
 </script>
 <style scoped>
 /* talk bubble contents */
+svg {
+  margin-left: 1em;
+  margin-right: 1em;
+}
 .talktext {
   padding: 1em;
   text-align: left;
@@ -184,6 +199,7 @@ export default {
 /* CSS talk bubble */
 .talk-bubble {
   margin: 40px;
+  width: fit-content;
   max-width: 66vw;
   height: auto;
 }
@@ -214,10 +230,15 @@ ol {
   overflow-x: hidden;
   overflow-y: auto;
   height: 70vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  align-items: center;
 }
 .info {
   font-size: 13px;
   color: rgb(191, 191, 191);
+  text-align: center;
 }
 form {
   display: flex;

@@ -152,5 +152,25 @@ export default {
         commit("loading", false);
       }
     },
+    //chat bericht gaan verwijderen
+    async removeChat({ commit, dispatch }, { gameId, chatId }) {
+      commit("loading", true);
+      console.log(gameId);
+      try {
+        const { data } = await axios.delete(
+          "http://localhost:8080/api/games/" + gameId + "/chat/" + chatId
+        );
+        commit("loading", false);
+        //nu de messages opnieuw gaan ophalen zodat we kunnnen zien wat we verwijderd hebben
+        dispatch("Chat", gameId);
+        console.log(data.data);
+      } catch (e) {
+        console.log(e);
+        router.push({
+          name: "gamelist",
+        });
+        commit("loading", false);
+      }
+    },
   },
 };
