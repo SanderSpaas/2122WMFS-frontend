@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "chart.js": "^3.7.1",
+    "happy-dom": "^5.0.0",
     "vue": "^3.2.33",
     "vue-chartjs": "^4.1.0",
     "vue-router": "^4.0.15",
@@ -21,7 +22,7 @@
     "@rushstack/eslint-patch": "^1.1.0",
     "@vitejs/plugin-vue": "^2.3.1",
     "@vue/eslint-config-prettier": "^7.0.0",
-    "@vue/test-utils": "^2.0.0-rc.20",
+    "@vue/test-utils": "^2.0.0-rc.18",
     "eslint": "^8.5.0",
     "eslint-plugin-vue": "^8.2.0",
     "jsdom": "^19.0.0",

@@ -51,7 +51,7 @@ export default {
 @media only screen and (min-width: 768px) {
   .flex {
     display: flex;
-    align-items:center;
+    align-items: center;
     div {
       width: 50vw;
     }

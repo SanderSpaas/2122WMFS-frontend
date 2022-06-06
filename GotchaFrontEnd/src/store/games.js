@@ -44,7 +44,7 @@ export default {
       console.log("trying to get games info");
       commit("loading", true);
       try {
-        const { data } = await axios.get("http://localhost:8080/api/games");
+        const { data } = await axios.get("/api/games");
         commit("loading", false);
         console.log(data);
         commit("games", data.data);
@@ -59,9 +59,7 @@ export default {
       commit("game", null);
       commit("loading", true);
       try {
-        const { data } = await axios.get(
-          "http://localhost:8080/api/games/" + gameId
-        );
+        const { data } = await axios.get("/api/games/" + gameId);
         commit("loading", false);
         console.log(data);
         commit("game", data.data);
@@ -78,7 +76,7 @@ export default {
       commit("loading", true);
       try {
         const { data } = await axios.patch(
-          "http://localhost:8080/api/player/" + gameId + "/" + targetID
+          "/api/player/" + gameId + "/" + targetID
         );
         commit("loading", false);
         console.log(data);
@@ -95,7 +93,7 @@ export default {
       console.log("adding player");
       commit("loading", true);
       try {
-        await axios.post("http://localhost:8080/api/games/" + gameId + "/add", {
+        await axios.post("/api/games/" + gameId + "/add", {
           alias: alias,
         });
         commit("loading", false);
@@ -116,9 +114,7 @@ export default {
       console.log("getting chats");
       commit("loading", true);
       try {
-        const { data } = await axios.get(
-          "http://localhost:8080/api/games/" + gameId + "/chat"
-        );
+        const { data } = await axios.get("/api/games/" + gameId + "/chat");
         commit("loading", false);
         commit("chat", data.data);
         console.log(data.data);
@@ -135,12 +131,9 @@ export default {
       console.log("sending chat");
       commit("loading", true);
       try {
-        await axios.post(
-          "http://localhost:8080/api/games/" + gameId + "/chat",
-          {
-            message: message,
-          }
-        );
+        await axios.post("/api/games/" + gameId + "/chat", {
+          message: message,
+        });
         commit("loading", false);
         //nu de messages opnieuw gaan ophalen zodat we kunnnen zien wat we verstuurd hebben
         dispatch("Chat", gameId);
@@ -158,7 +151,7 @@ export default {
       console.log(gameId);
       try {
         const { data } = await axios.delete(
-          "http://localhost:8080/api/games/" + gameId + "/chat/" + chatId
+          "/api/games/" + gameId + "/chat/" + chatId
         );
         commit("loading", false);
         //nu de messages opnieuw gaan ophalen zodat we kunnnen zien wat we verwijderd hebben
