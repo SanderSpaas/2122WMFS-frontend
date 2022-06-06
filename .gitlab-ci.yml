@@ -4,6 +4,7 @@ build site:
   script:
     - cd GotchaFrontEnd
     - npm install --progress=false
+    - npm run build
 
 lint:
   image: node:latest
@@ -20,3 +21,4 @@ unit test:
     - cd GotchaFrontEnd
     - npm install --progress=false
     - npm run test:unit 
+
