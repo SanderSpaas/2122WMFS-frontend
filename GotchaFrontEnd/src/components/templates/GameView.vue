@@ -74,9 +74,6 @@ export default {
       });
     },
   },
-  created() {
-    console.log(this.$store._actions);
-  },
   mounted() {
     this.Game(this.$route.params.gameId);
   },
@@ -107,7 +104,6 @@ img {
     width: 20vw;
   }
 }
-
 .infoBox {
   display: flex;
   justify-content: center;

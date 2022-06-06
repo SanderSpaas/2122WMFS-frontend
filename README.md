@@ -1,6 +1,7 @@
 # 2122WMFS Frontend
 
 
+[![pipeline status](https://gitlab.com/ikdoeict/sander.spaas/2122WMFS-frontend/badges/main/pipeline.svg)](https://gitlab.com/ikdoeict/sander.spaas/2122WMFS-frontend/-/commits/main)
 
 ## Getting started
 
