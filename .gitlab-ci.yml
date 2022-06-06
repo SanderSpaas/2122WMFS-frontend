@@ -10,6 +10,7 @@ lint:
   stage: test
   script:
     - cd GotchaFrontEnd
+    - npm install --progress=false
     - npm run lint
 
 unit test:
