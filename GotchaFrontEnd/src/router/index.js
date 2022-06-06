@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import store from "../store";
-// import Home from "../components/templates/HomeView.vue";
 import Login from "../components/templates/LoginView.vue";
 import Register from "../components/templates/RegisterView.vue";
 import Player from "../components/templates/PlayerLoginView.vue";
@@ -11,6 +10,7 @@ import Chat from "../components/templates/ChatView.vue";
 import History from "../components/templates/HistoryView.vue";
 import Gamelist from "../components/templates/GamesView.vue";
 import PlayerView from "../components/templates/PlayerView.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -41,7 +41,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/game/:gameId/player",
+      path: "/game/:gameId/add",
       name: "player",
       component: Player,
       meta: {
@@ -107,7 +107,7 @@ const router = createRouter({
     // alle urls die em niet kent naar de homepage sturen
     // {
     //   path: "/:catchAll(.*)",
-    //   redirect: { path: "/" },
+    //   redirect: { path: "/gameslist" },
     // },
   ],
 });
@@ -117,7 +117,18 @@ router.beforeEach((to, from, next) => {
     if (!store.getters["auth/isAuthenticated"]) {
       next("/login");
     } else {
-      next();
+      if (to.name === "players") {
+        if (
+          store.getters["auth/user"].role === "admin" ||
+          store.getters["auth/user"].role === "spelbegeleider"
+        ) {
+          next();
+        } else {
+          next("/gamelist");
+        }
+      } else {
+        next();
+      }
     }
   }
   if (to.fullPath === "/login" || to.fullPath === "/register") {

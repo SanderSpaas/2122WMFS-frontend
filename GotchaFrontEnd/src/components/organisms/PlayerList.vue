@@ -67,7 +67,6 @@ li {
     text-overflow: ellipsis;
   }
   button {
-    // padding: 0.5em;
     height: 4em;
     color: var(--color-text);
     border-radius: 5px 5px 5px 5px;

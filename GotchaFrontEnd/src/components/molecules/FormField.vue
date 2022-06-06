@@ -1,4 +1,4 @@
-<style scoped>
+<style scoped lang="scss">
 input {
   border-radius: 5px;
   padding: 5px;
@@ -13,7 +13,10 @@ input {
 .form-field {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  label {
+    align-self: flex-start;
+  }
 }
 </style>
 <script>

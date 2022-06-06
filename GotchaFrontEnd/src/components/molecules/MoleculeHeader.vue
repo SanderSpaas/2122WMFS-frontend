@@ -6,12 +6,9 @@ header {
   align-items: center;
   height: 10vh;
   h1 {
-    // color: rgb(159, 159, 159);
-    // font-size: 2.2em;
+    color: white;
+    font-size: 2.2em;
     font-family: HACKED;
-    // background: -webkit-linear-gradient($color-red, $color-orange);
-    // -webkit-background-clip: text;
-    // -webkit-text-fill-color: transparent;
   }
 }
 </style>

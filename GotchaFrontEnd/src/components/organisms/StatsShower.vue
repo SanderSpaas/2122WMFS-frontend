@@ -18,32 +18,11 @@
 
 <script>
 import { Bar } from "vue-chartjs";
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-} from "chart.js";
-
-ChartJS.register(
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale
-);
 
 export default {
   props: ["gameData", "deadAndAlive"],
   name: "BarChart",
   components: { Bar },
-  created() {
-    console.log(this.$store._actions);
-  },
 };
 </script>
 <style lang="scss" scoped>

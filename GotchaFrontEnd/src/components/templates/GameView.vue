@@ -125,7 +125,6 @@ button {
 .container {
   display: flex;
   flex-direction: column;
-  /* background-color: rgb(42, 23, 191); */
   align-items: center;
   justify-content: space-evenly;
   height: 70vh;
@@ -133,7 +132,6 @@ button {
 .items {
   display: flex;
   flex-direction: column;
-  /* background-color: purple; */
   align-items: center;
   justify-content: space-evenly;
   height: 20vh;

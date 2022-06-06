@@ -26,9 +26,6 @@ export default {
       Game: "Game",
     }),
   },
-  created() {
-    console.log(this.$store._actions);
-  },
   async mounted() {
     await this.Game(this.$route.params.gameId);
   },

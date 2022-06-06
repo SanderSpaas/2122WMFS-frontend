@@ -44,25 +44,22 @@ export default {
   actions: {
     async login({ commit, dispatch }, { email, password }) {
       if (this.isAuthenticated) {
-        console.log("you are already logged in");
+        return;
       } else {
-        console.log("Trying to log you in: " + email + " " + password);
         commit("loading", true);
         try {
           await axios.get("/sanctum/csrf-cookie");
-          const { data } = await axios.post("/api/login", {
+          await axios.post("/api/login", {
             email: email,
             password: password,
           });
           commit("loading", false);
-          console.log(data);
           commit("login", true);
           commit("authenticate", true);
           router.push({
             name: "gamelist",
           });
         } catch (e) {
-          console.log(e);
           commit("loading", false);
           return e.response.data;
         }
@@ -71,26 +68,21 @@ export default {
     },
     async register({ commit }, { name, email, password }) {
       if (this.isAuthenticated) {
-        console.log("you are logged in");
+        return;
       } else {
-        console.log(
-          "Trying to register user: " + name + "" + email + " " + password
-        );
         commit("loading", true);
         try {
           await axios.get("/sanctum/csrf-cookie");
-          const { data } = await axios.post("/api/user/add", {
+          await axios.post("/api/user/add", {
             name: name,
             email: email,
             password: password,
           });
           commit("loading", false);
-          console.log(data);
           router.push({
             name: "login",
           });
         } catch (e) {
-          console.log(e);
           commit("loading", false);
           return e.response.data;
         }
@@ -123,10 +115,8 @@ export default {
         });
     },
     async tryAutoLogin({ dispatch }) {
-      console.log("trying to log you in sir");
       if (document.cookie.indexOf("XSRF-TOKEN") === -1) {
         //geen cookie aanwezig
-        console.log("looks like you don't have a cookie bad boy");
       } else {
         //cookie aanwezig dus we kunnen auto loginnen nadat we zijn gaan nakijken of we effectief authenticated zijn dmv een getUser
         await dispatch("getUser");
@@ -134,17 +124,14 @@ export default {
     },
     async getUser({ commit }) {
       commit("loading", true);
-      console.log("trying to get user info");
       try {
         const { data } = await axios.get("/api/user");
         commit("loading", false);
-        console.log(data);
         commit("login", true);
         commit("authenticate", true);
         commit("setUser", data);
         return true;
       } catch (e) {
-        console.log(e);
         commit("loading", false);
         return false;
       }

@@ -90,14 +90,11 @@ li {
   .people {
     width: 15vw;
   }
-  a {
-    border-radius: 5px 5px 5px 5px;
-    color: white;
-    text-decoration: none;
-  }
+  a,
   .closed {
     border-radius: 5px 5px 5px 5px;
     color: white;
+    text-decoration: none;
   }
 }
 </style>

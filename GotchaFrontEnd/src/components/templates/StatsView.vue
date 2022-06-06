@@ -39,7 +39,6 @@ export default {
           isAlive++;
         }
       });
-      // console.log(isDead + " " + isAlive);
       this.deadAndAlive = [
         {
           chartData: {
@@ -60,9 +59,6 @@ export default {
         },
       ];
     },
-  },
-  created() {
-    console.log(this.$store._actions);
   },
   async mounted() {
     await this.Game(this.$route.params.gameId).then(() => {

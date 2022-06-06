@@ -31,7 +31,6 @@ import FormField from "../molecules/FormField.vue";
 import store from "../../store";
 import ValidationErrors from "../molecules/ValidationErrors.vue";
 
-// import { mapActions } from "vuex";
 export default {
   data() {
     return {

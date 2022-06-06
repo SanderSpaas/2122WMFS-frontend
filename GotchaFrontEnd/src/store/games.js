@@ -41,27 +41,23 @@ export default {
   actions: {
     //geeft alle games weer
     async Games({ commit }) {
-      console.log("trying to get games info");
       commit("loading", true);
       try {
         const { data } = await axios.get("/api/games");
         commit("loading", false);
-        console.log(data);
         commit("games", data.data);
       } catch (e) {
-        console.log(e);
         commit("loading", false);
       }
     },
     //info over de game met alle spelers
     async Game({ commit }, gameId) {
-      console.log("trying to get game info with id: " + gameId);
       commit("game", null);
       commit("loading", true);
       try {
         const { data } = await axios.get("/api/games/" + gameId);
         commit("loading", false);
-        console.log(data);
+
         commit("game", data.data);
       } catch (e) {
         //game bestaat niet dus user gaan weghalen van de pagina
@@ -75,11 +71,8 @@ export default {
       console.log("Killing player");
       commit("loading", true);
       try {
-        const { data } = await axios.patch(
-          "/api/player/" + gameId + "/" + targetID
-        );
+        await axios.patch("/api/player/" + gameId + "/" + targetID);
         commit("loading", false);
-        console.log(data);
         dispatch("Game", gameId);
       } catch (e) {
         router.push({
@@ -104,7 +97,6 @@ export default {
           },
         });
       } catch (e) {
-        console.log(e);
         commit("loading", false);
         return e.response.data;
       }
@@ -117,9 +109,7 @@ export default {
         const { data } = await axios.get("/api/games/" + gameId + "/chat");
         commit("loading", false);
         commit("chat", data.data);
-        console.log(data.data);
       } catch (e) {
-        console.log(e);
         router.push({
           name: "gamelist",
         });
@@ -138,7 +128,6 @@ export default {
         //nu de messages opnieuw gaan ophalen zodat we kunnnen zien wat we verstuurd hebben
         dispatch("Chat", gameId);
       } catch (e) {
-        console.log(e);
         router.push({
           name: "gamelist",
         });
@@ -148,17 +137,12 @@ export default {
     //chat bericht gaan verwijderen
     async removeChat({ commit, dispatch }, { gameId, chatId }) {
       commit("loading", true);
-      console.log(gameId);
       try {
-        const { data } = await axios.delete(
-          "/api/games/" + gameId + "/chat/" + chatId
-        );
+        await axios.delete("/api/games/" + gameId + "/chat/" + chatId);
         commit("loading", false);
         //nu de messages opnieuw gaan ophalen zodat we kunnnen zien wat we verwijderd hebben
         dispatch("Chat", gameId);
-        console.log(data.data);
       } catch (e) {
-        console.log(e);
         router.push({
           name: "gamelist",
         });
