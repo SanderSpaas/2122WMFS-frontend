@@ -6,12 +6,14 @@ build site:
     - npm install --progress=false
 
 lint:
+  image: node:latest
   stage: test
   script:
     - cd GotchaFrontEnd
     - npm run lint
 
 unit test:
+  image: node:latest
   stage: test
   script:
     - cd GotchaFrontEnd
