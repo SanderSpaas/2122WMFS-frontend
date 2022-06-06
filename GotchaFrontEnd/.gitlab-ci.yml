@@ -1,31 +1,28 @@
-docker:
-    - image: node:10.6.0
-stages:
-  - build
-  - test
-
-cache:
-  paths:
-    - node_modules/
-
 build site:
+  image: node:latest
   stage: build
   script:
+    - cd GotchaFrontEnd
     - npm install --progress=false
-    - npm run build
 
-unit test:
+lint:
+  image: node:latest
   stage: test
   script:
-    - npm run test:unit
-  artifacts:
-    paths:
-      - dist/
-      - node_modules/
-      - package.json
+    - cd GotchaFrontEnd
+    - npm install --progress=false
 
-lint-test-job:   # This job also runs in the test stage.
-  stage: test    # It can run at the same time as unit-test-job (in parallel).
+build site:
+  stage: test
   script:
+    - npm install --progress=false
     - npm run lint
+
+unit test:
+  image: node:latest
+  stage: test
+  script:
+    - cd GotchaFrontEnd
+    - npm install --progress=false
+    - npm run test:unit 
 
